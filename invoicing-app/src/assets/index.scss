@@ -73,9 +73,7 @@ body {
         line-height: 18px;
         word-spacing: -0.23;
     }
-    .icon-2xl {
-        
-    }
+
 
     button{
         @extend .text-xs;
@@ -169,6 +167,20 @@ body {
                 &:focus{
                     background-color: 1.3px $color-violet-light solid;
                 }
+            }
+            select{
+                @extend .text-sm-bold;
+                outline:0;
+                border: 1px $color-grey-light solid;
+                padding: 18px;
+                border-radius: 3px;
+                &:hover{
+                    border: 1.3px $color-violet-light solid;
+                }
+                &:focus{
+                    background-color: 1.3px $color-violet-light solid;
+                }
+                
             }
         }
         
