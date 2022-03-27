@@ -3,6 +3,7 @@ type Props = {
     label: string,
     type: "violet"|"dark"|"dark-light"|"red"|"grey"|"grey-light"
     size: "medium"|"large"
+    inputType?: "text" | "date"
     customClass?: string[],
     placeholder?: string;
     value?: string;
@@ -13,7 +14,8 @@ class Input extends React.Component<Props> {
     static defaultProps = {
         type: "violet",
         size: "medium",
-        customClasses: []
+        customClasses: [],
+        inputType: "text"
       };
     render() {
 
@@ -21,7 +23,7 @@ class Input extends React.Component<Props> {
       return( 
         <div className="input-wrapper">
           <label> {this.props.label}</label>
-          <input value={this.props.value} placeholder={this.props.placeholder} onInput={this.props.onInput} className={className} />
+          <input type={this.props.inputType} value={this.props.value} placeholder={this.props.placeholder} onInput={this.props.onInput} className={className} />
         </div>
      );
     }
