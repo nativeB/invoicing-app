@@ -3,18 +3,31 @@ $color-violet-light: #9277ff;
 $color-blue: #1E2139;
 $color-blue-light: #252945;
 $color-grey-light: #DFE3FA;
-$color-ube: #888EB0;
-$color-black: #060e16;
+$color-grey: #888EB0;
+$color-ube: #7E88C3;
+$color-black: #0C0E16;
 $color-black-light: #141625;
 $color-red: #EC5757;
 $color-white: #F8F8FB;
-$color-white: #F8F8FB;
+
 // had to generate this color myself wrong code used in system.jpg
 $color-red-light: #eb7777;
 
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap');
 
-
+@mixin h3AndInput {
+        font-weight: bold;
+        &.header-sm {
+            font-size: 16px;
+            line-height: 24px;
+            word-spacing: -0.8;
+        }
+        &.header-xs {
+            font-size: 12px;
+            line-height: 15px;
+            word-spacing: -0.25;
+        }
+}
 
 body {
     margin: 0;
@@ -39,34 +52,113 @@ body {
 
     h3 {
 
-        font-weight: bold;
-        &.header-sm {
-            font-size: 16px;
-            line-height: 24px;
-            word-spacing: -0.8;
-        }
-        &.header-xs {
-            font-size: 12px;
-            line-height: 15px;
-            word-spacing: -0.25;
-        }
+        @include h3AndInput;
     }
 
-    &.text-sm {
+    .text-sm {
         font-size: 12px;
         font-weight: 500;
         line-height: 15px;
         word-spacing: -0.25;
     }
+    .text-sm-bold {
+        @extend .text-sm;
+        font-weight: bold;
+    }
 
-    &.text-xs {
+    .text-xs {
         font-size: 11px;
         font-weight: 500;
         line-height: 18px;
         word-spacing: -0.23;
     }
-    
 
+    button{
+        @extend .text-xs;
+        outline:0;
+        border: 0;
+        border-radius: 50px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+
+        &.violet{
+            background-color: $color-violet;
+            &:hover{
+                background-color: $color-violet-light;
+            }
+        }
+        
+
+        &.dark {
+            color: $color-grey;
+            background-color: $color-blue-light;
+            &:hover {
+                background-color: $color-black;
+            }
+        }
+        &.dark-light {
+            color: $color-grey-light;
+            background-color: $color-blue-light;
+            &:hover {
+                background-color: $color-black-light;
+            }
+        }
+        &.red {
+            color: white;
+            background-color:$color-red;
+            &:hover {
+                background-color: $color-red-light;
+            }
+        }
+        &.grey-light{
+            color: $color-ube;
+            background-color:$color-white;
+            &:hover {
+                background-color: $color-grey-light;
+            }
+        }
+        &.grey{
+            color: $color-white;
+            background-color:$color-black-light;
+            &:hover {
+                background-color: $color-white;
+                color: $color-grey-light
+            }
+        }
+        &.large{
+            padding: 18px 100px;
+        }
+        &.medium{
+            padding: 15px 25px;
+        }
+        &.centered{
+            justify-content: space-around
+        }
+    }
+
+    div {
+        &.input-wrapper{
+            display: inline-flex;
+            flex-direction: column;
+            width: 280px;
+            label {
+                padding: 8px 0px;
+            }
+            input{
+                outline:0;
+                border: .8px $color-grey-light solid;
+                padding: 18px;
+                border-radius: 3px;
+            &:hover{
+                color: red;
+            }
+            }
+        }
+        
+    }
+    
     .App {
         text-align: center;
         
