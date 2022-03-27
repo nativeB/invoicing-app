@@ -16,13 +16,14 @@ $color-red-light: #eb7777;
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap');
 
 @mixin h3AndInput {
-        font-weight: bold;
         &.header-sm {
+            font-weight: bold;
             font-size: 16px;
             line-height: 24px;
             word-spacing: -0.8;
         }
         &.header-xs {
+            font-weight: bold;
             font-size: 12px;
             line-height: 15px;
             word-spacing: -0.25;
@@ -72,6 +73,9 @@ body {
         line-height: 18px;
         word-spacing: -0.23;
     }
+    .icon-2xl {
+        
+    }
 
     button{
         @extend .text-xs;
@@ -80,9 +84,12 @@ body {
         border-radius: 50px;
         color: white;
         display: flex;
-        justify-content: space-between;
+        align-items: center;
         cursor: pointer;
 
+        svg {
+            padding-right: 5px
+        }
         &.violet{
             background-color: $color-violet;
             &:hover{
@@ -131,6 +138,7 @@ body {
             padding: 18px 100px;
         }
         &.medium{
+            justify-content: space-between;
             padding: 15px 25px;
         }
         &.centered{
@@ -145,15 +153,22 @@ body {
             width: 280px;
             label {
                 padding: 8px 0px;
+                text-align: left;
+                @extend .text-sm-bold;
+                color: $color-ube
             }
             input{
+                @extend .text-sm-bold;
                 outline:0;
-                border: .8px $color-grey-light solid;
+                border: 1px $color-grey-light solid;
                 padding: 18px;
                 border-radius: 3px;
-            &:hover{
-                color: red;
-            }
+                &:hover{
+                    border: 1.3px $color-violet-light solid;
+                }
+                &:focus{
+                    background-color: 1.3px $color-violet-light solid;
+                }
             }
         }
         
