@@ -1,46 +1,114 @@
+$color-violet: #7C5DFA;
+$color-violet-light: #9277ff;
+$color-blue: #1E2139;
+$color-blue-light: #252945;
+$color-grey-light: #DFE3FA;
+$color-ube: #888EB0;
+$color-black: #060e16;
+$color-black-light: #141625;
+$color-red: #EC5757;
+$color-white: #F8F8FB;
+$color-white: #F8F8FB;
+// had to generate this color myself wrong code used in system.jpg
+$color-red-light: #eb7777;
+
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap');
+
+
+
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: 'Spartan', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-  }
-  
-.App {
-    text-align: center;
-  }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
+
+    h1 {
+        font-size: 32px;
+        font-weight: bold;
+        line-height: 36px;
+        word-spacing: -1;
     }
-  }
+    h2 {
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 22px;
+        word-spacing: -0.63;
+    }
+
+    h3 {
+
+        font-weight: bold;
+        &.header-sm {
+            font-size: 16px;
+            line-height: 24px;
+            word-spacing: -0.8;
+        }
+        &.header-xs {
+            font-size: 12px;
+            line-height: 15px;
+            word-spacing: -0.25;
+        }
+    }
+
+    &.text-sm {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 15px;
+        word-spacing: -0.25;
+    }
+
+    &.text-xs {
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 18px;
+        word-spacing: -0.23;
+    }
+    
+
+    .App {
+        text-align: center;
+        
+        .App-header {
+            background-color: #282c34;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: calc(10px + 2vmin);
+            color: white;
+            .App-logo {
+                height: 40vmin;
+                pointer-events: none;
+            }
+            @media (prefers-reduced-motion: no-preference) {
+            .App-logo {
+                animation: App-logo-spin infinite 20s linear;
+            }
+            }
+            
+            
+            .App-link {
+                color: #61dafb;
+            }
+        }
+
+    } 
+    code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+    }
   
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
+}
   
-  .App-link {
-    color: #61dafb;
-  }
+
+
+  
+ 
+  
+ 
   
   @keyframes App-logo-spin {
     from {
