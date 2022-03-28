@@ -97,11 +97,16 @@ body {
         font-weight: bold;
     }
 
+    .dark .text-xs {
+        color: white;
+    }
     .text-xs {
         font-size: 11px;
         font-weight: 500;
         line-height: 18px;
         word-spacing: -0.23;
+        color: $color-black;
+        
     }
 
 
@@ -372,6 +377,7 @@ body {
             h1,h2,h3{
                 color:white;
             }
+    
         }
 
         & > div:first-child{ 
@@ -388,7 +394,59 @@ body {
             }
         }
 
+        
+        .App-side {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            left: 0;
+            width: 8vw;
+            height: 100vh;
+            background-color: $color-blue-light;
+            border-radius: 0px 13px 13px 0px;
+            overflow: hidden;
+            justify-content: space-between;
+            
+            .App-side-header {
+                background-color: $color-violet-light;
 
+                border-radius: 0px 13px 13px 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 70px;
+            }
+            .App-side-content {
+                display: flex;
+                flex-direction: column-reverse;
+                flex-grow: 1;
+                .App-side-content-mode{
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    svg{
+                        padding: 5px;
+                        cursor: pointer;
+                        &:hover{
+                            color: $color-ube;
+                        }
+                    }
+                }
+            }
+            .App-side-footer {
+                border-top: 1px solid $color-grey-light;
+                display: flex;
+                justify-content: center;
+                padding: 15px;
+                img{
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+
+                }
+            }
+            
+        }
     } 
     code {
         font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

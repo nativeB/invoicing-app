@@ -6,18 +6,21 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import InvoiceSideHeader from './components/InvoiceSideBar';
 function App() {
   return (
-    <Router>
-    <div className="App dark">
-      <Routes>
-        <Route path="/demo" element={<Demo />}>
-        </Route>
-        <Route path="/" element={<Invoices />}> 
-        </Route>
-      </Routes>
-    </div>
-  </Router>
+      <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/demo" element={<Demo />}>
+          </Route>
+          <Route path="/" element={<Invoices />}> 
+          </Route>
+        </Routes>
+
+        <InvoiceSideHeader/>
+      </div>
+    </Router>
   );
 }
 
