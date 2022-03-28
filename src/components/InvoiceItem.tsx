@@ -29,7 +29,8 @@ class InvoiceItem extends React.Component<Props> {
 
   formatNumber = (price:number)=> {
     if(!price) return ""
-    return price.toFixed(2);
+    const format = Intl.NumberFormat('en-US',{ style: 'currency', currency: 'GBP' }).format
+    return `${format(price)}`;
   }
   upperCaseFirst(data:string) {
     return `${data[0].toUpperCase()}${data.substring(1)}`
@@ -44,10 +45,10 @@ class InvoiceItem extends React.Component<Props> {
     }
     return (
       <div className='invoice-item '>
-        <p className='text-sm-bold'> <span className='pound'>#</span>{this.props.item.id}</p>
-        <p className='text-sm'> {this.formatDate(this.props.item.paymentDue)}</p>
-        <p className='text-sm'> {this.props.item.clientName}</p>
-        <h3 className='header-text-sm'> {this.formatNumber(this.props.item.total)}</h3>
+        <h3 className='text-sm-bold'> <span className='pound'>#</span>{this.props.item.id}</h3>
+        <h3 className='text-sm'> {this.formatDate(this.props.item.paymentDue)}</h3>
+        <h3 className='text-sm'> {this.props.item.clientName}</h3>
+        <h2 > {this.formatNumber(this.props.item.total)}</h2>
         <div className={`invoice-status ${statusClass}`}>
           <span> &#8226;</span>
            <p > {this.upperCaseFirst(this.props.item.status)}</p>

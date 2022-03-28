@@ -11,9 +11,12 @@ $color-red: #EC5757;
 $color-white: #F8F8FB;
 $color-green:#33d79f;
 $color-green-light: #1e3937;
+$color-green-light-alt: #ecf8f7;
 $color-gold:#ff8e00;
 $color-gold-light:#54473d;
-$color-white-fallback: #ebebed;
+$color-gold-light-alt:#fff6f0;
+$color-white-alt: #ebebed;
+$color-white-alt-2: #f3f3fb;
 
 
 // had to generate this color myself wrong code used in system.jpg
@@ -51,7 +54,11 @@ body {
         font-weight: bold;
         line-height: 36px;
         word-spacing: -1;
-        color: white;
+        color: $color-black;
+
+        .dark & {
+            color: white;
+        }
         margin: 5px 0;
     }
     h2 {
@@ -59,12 +66,18 @@ body {
         font-weight: bold;
         line-height: 22px;
         word-spacing: -0.63;
-        color:white;
+         color: $color-black;
+        .dark & {
+            color: white;
+        }
         margin: 5px 0;
     }
 
     h3 {
-        color: white;
+        color: $color-grey;
+        .dark & {
+            color: white;
+        }
         margin: 5px 0;
         @include h3AndInput;
     }
@@ -74,6 +87,10 @@ body {
         font-weight: 500;
         line-height: 15px;
         word-spacing: -0.25;
+        color: $color-black;
+        .dark & {
+            color: white;
+        }
     }
     .text-sm-bold {
         @extend .text-sm;
@@ -108,40 +125,54 @@ body {
             word-wrap: break-word;
         }
     }
+    .dark .invoice-item{
+        background-color: $color-blue-light;
+        & .invoice-status.paid{
+            background-color: $color-green-light;
+        }
+        & .invoice-status.pending {
+            background-color: $color-gold-light;
+        }
+        & .invoice-status.dark {
+            background-color: $color-white-alt;
+            color: white;
+        }
+    }
+ 
     .invoice-item{
         display: grid;
         grid-template-columns: 100px auto auto auto 100px 50px;
-        background-color: #2196F3;
         padding: 10px;
-        background-color: $color-blue-light;
-        height: 80px;
+        height: 60px;
         text-align: center;
         align-items: center;
         margin: 10px;
-        border-radius: 10px;;
-      
+        border-radius: 10px;
+        background-color: white;
+
         .pound,svg{
             color: $color-ube
         }
         .invoice-status{
+            @extend .text-sm;
             display: flex;
             padding: 0px 10px;
             justify-content: center;
             align-items: center;
             border-radius: 5px;
-            height: 45px;
+            height: 40px;
             text-align: center;
             &.paid{
-                background-color: $color-green-light;
+                background-color: $color-green-light-alt;
                 color: $color-green;
             }
             &.pending{
-                background-color: $color-gold-light;
+                background-color: $color-gold-light-alt;
                 color: $color-gold;
             }
             &.draft{
-                color: white;
-                background-color: $color-white-fallback
+                color: $color-black;
+                background-color: $color-white-alt-2;
             }
             span{
                 font-size: 40px;
@@ -164,6 +195,7 @@ body {
         }
         &.violet{
             background-color: $color-violet;
+            color: white;
             &:hover{
                 background-color: $color-violet-light;
             }
@@ -271,7 +303,9 @@ body {
 
 
     // dropdown
-
+    .dark .dropdown .dropbtn {
+        color: white;
+    }
     .dropdown {
         position: relative;
         display: inline-block;
@@ -279,6 +313,8 @@ body {
         .dropbtn {
             display: flex;
             cursor: pointer;
+            color: $color-black;
+            
             .arrow{
                 color: $color-violet;
                 line-height: 10px;
@@ -329,6 +365,7 @@ body {
         align-items: center;
         color: white;
         overflow: auto;
+        background-color: $color-white;
         &.dark{
             background-color: $color-black-light;
 
