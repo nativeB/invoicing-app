@@ -9,6 +9,12 @@ $color-black: #0C0E16;
 $color-black-light: #141625;
 $color-red: #EC5757;
 $color-white: #F8F8FB;
+$color-green:#33d79f;
+$color-green-light: #1e3937;
+$color-gold:#ff8e00;
+$color-gold-light:#54473d;
+$color-white-fallback: #ebebed;
+
 
 // had to generate this color myself wrong code used in system.jpg
 $color-red-light: #eb7777;
@@ -104,7 +110,7 @@ body {
     }
     .invoice-item{
         display: grid;
-        grid-template-columns: auto auto auto auto auto 20px;
+        grid-template-columns: 100px auto auto auto 100px 50px;
         background-color: #2196F3;
         padding: 10px;
         background-color: $color-blue-light;
@@ -114,8 +120,33 @@ body {
         margin: 10px;
         border-radius: 10px;;
       
-        span,svg{
+        .pound,svg{
             color: $color-ube
+        }
+        .invoice-status{
+            display: flex;
+            padding: 0px 10px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            height: 45px;
+            text-align: center;
+            &.paid{
+                background-color: $color-green-light;
+                color: $color-green;
+            }
+            &.pending{
+                background-color: $color-gold-light;
+                color: $color-gold;
+            }
+            &.draft{
+                color: white;
+                background-color: $color-white-fallback
+            }
+            span{
+                font-size: 40px;
+                padding-top: 5px;
+            }
         }
     }
     button{
@@ -297,7 +328,7 @@ body {
         flex-direction: column;
         align-items: center;
         color: white;
-
+        overflow: auto;
         &.dark{
             background-color: $color-black-light;
 

@@ -16,11 +16,11 @@ class Demo extends React.Component<Prop,State> {
   render(){
     return (
         <div className='content'> 
-        <InvoiceHeader/>
+        <InvoiceHeader totalInvoices={this.state.data? this.state.data.length:0} />
           {
-            data && data.length? 
-            <InvoiceList data={data} />
-            :<InvoiceEmpty/>
+            this.state.data && this.state.data.length? 
+            <InvoiceList data={this.state.data} />
+            :<InvoiceEmpty />
           }
         </div>
       );
