@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Input from "./elements/Input";
 import Select from "./elements/Select";
+import InvoiceItem from "./InvoiceItem";
 type Props = {
   app: any
 }
@@ -65,6 +66,11 @@ class InvoiceNew extends React.Component<Props,State> {
 
             <section>
               <Input customClass={['input-full']} label={"Project Description"} onInput={()=>console.log('test')} type= {"grey"}  placeholder="e.g. Graphic Design Service"/>
+            </section>
+
+            <h3 className="text-sm-bold">Item List</h3>
+            <section>
+              <InvoiceItem/>
             </section>
 
             </div>
