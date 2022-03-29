@@ -14,16 +14,16 @@ class Input extends React.Component<Props> {
     static defaultProps = {
         type: "violet",
         size: "medium",
-        customClasses: [],
+        customClass: [],
         inputType: "text"
       };
     render() {
 
-     const className = (this.props.customClass || []).join(' ');
+     const className = `input-wrapper ${(this.props.customClass || []).join(' ')}`;
       return( 
-        <div className="input-wrapper">
+        <div className={className}>
           <label> {this.props.label}</label>
-          <input type={this.props.inputType} value={this.props.value} placeholder={this.props.placeholder} onInput={this.props.onInput} className={className} />
+          <input type={this.props.inputType} value={this.props.value} placeholder={this.props.placeholder} onInput={this.props.onInput}  />
         </div>
      );
     }

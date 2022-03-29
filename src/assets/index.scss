@@ -185,6 +185,41 @@ body {
             }
         }
     }
+
+
+    .dark .invoice-view-side{
+        background-color: $color-blue;
+    }
+    .invoice-view-side{
+        background-color: $color-white;
+        width: 25vw;
+        padding: 30px;
+        h3{
+            color: $color-violet !important;
+            padding: 35px 0px 5px 0px;
+        }
+        .invoice-new-body{
+            display: flex;
+            flex-direction: column;
+
+            section {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            
+        }
+       
+    }
+
+    .invoice-edit{
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
     button{
         @extend .text-xs;
         outline:0;
@@ -255,11 +290,31 @@ body {
         }
     }
 
+    .dark .input-wrapper input,.dark .input-wrapper select{
+        color: white;
+        background-color: $color-blue-light;
+        border: none;
+        &:hover{
+            border: 1.3px $color-violet-light solid;
+        }
+        &:focus{
+            background-color: 1.3px $color-violet-light solid;
+        }
+    }
     div {
         &.input-wrapper{
             display: inline-flex;
             flex-direction: column;
-            width: 280px;
+            margin-top: 10px;
+            &.input-full{
+                width: 100%;
+            }
+            &.input-xs{
+                width: 31%;
+            }
+            &.input-sm{
+                width: 48%;
+            }
             label {
                 padding: 8px 0px;
                 text-align: left;
@@ -270,8 +325,8 @@ body {
                 @extend .text-sm-bold;
                 outline:0;
                 border: 1px $color-grey-light solid;
-                padding: 18px;
-                border-radius: 6px;
+                padding: 10px;
+                border-radius: 5px;
                 &:hover{
                     border: 1.3px $color-violet-light solid;
                 }
@@ -287,7 +342,7 @@ body {
                 @extend .text-sm-bold;
                 outline:0;
                 border: 1px $color-grey-light solid;
-                padding: 20px;
+                padding: 10px;
                 border-radius: 6px;
                 &:hover{
                     border: 1.3px $color-violet-light solid;
@@ -397,54 +452,61 @@ body {
         
         .App-side {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             position: absolute;
             left: 0;
-            width: 8vw;
             height: 100vh;
-            background-color: $color-blue-light;
+            background-color: transparent;
             border-radius: 0px 13px 13px 0px;
             overflow: hidden;
-            justify-content: space-between;
-            
-            .App-side-header {
-                background-color: $color-violet-light;
-
+            .App-side-menu {
+                display: flex;
+                flex-direction: column;
+                width: 100px;
+                background-color: $color-blue-light;
                 border-radius: 0px 13px 13px 0px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 70px;
-            }
-            .App-side-content {
-                display: flex;
-                flex-direction: column-reverse;
-                flex-grow: 1;
-                .App-side-content-mode{
-                    padding: 20px;
+                justify-content: space-between;
+                .App-side-header {
+                    background-color: $color-violet-light;
+                    border-radius: 0px 13px 13px 0px;
                     display: flex;
-                    flex-direction: column;
-                    svg{
-                        padding: 5px;
-                        cursor: pointer;
-                        &:hover{
-                            color: $color-ube;
+                    justify-content: center;
+                    align-items: center;
+                    height: 80px;
+                }
+                .App-side-content {
+                    display: flex;
+                    flex-direction: column-reverse;
+                    flex-grow: 1;
+                    .App-side-content-mode{
+                        padding: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        svg{
+                            padding: 5px;
+                            cursor: pointer;
+                            &:hover{
+                                color: $color-ube;
+                            }
                         }
                     }
                 }
-            }
-            .App-side-footer {
-                border-top: 1px solid $color-grey-light;
-                display: flex;
-                justify-content: center;
-                padding: 15px;
-                img{
-                    width: 35px;
-                    height: 35px;
-                    border-radius: 50%;
-
+                .App-side-footer {
+                    border-top: 1px solid $color-grey-light;
+                    display: flex;
+                    justify-content: center;
+                    padding: 15px;
+                    img{
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+    
+                    }
                 }
             }
+
+            
+           
             
         }
     } 

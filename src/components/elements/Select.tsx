@@ -15,15 +15,15 @@ class Select extends React.Component<Props> {
   };
 
   render() {
-    const className = (this.props.customClass || []).join(' ');
+    const className = `input-wrapper ${(this.props.customClass || []).join(' ')}`;
     const options = this.props.options.map((option, index) => <option key={index} value={option.value}>{option.label}</option>);
     return (
-      <div className="input-wrapper">
+      <div className={className}>
         <label>
           {' '}
           {this.props.label}
         </label>
-        <select placeholder={this.props.placeholder} onChange={this.props.onChange} className={className}>
+        <select placeholder={this.props.placeholder} onChange={this.props.onChange} >
           {options}
         </select>
 
