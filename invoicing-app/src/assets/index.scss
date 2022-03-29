@@ -130,7 +130,7 @@ body {
             word-wrap: break-word;
         }
     }
-    .dark .invoice-item{
+    .dark .invoice-row{
         background-color: $color-blue-light;
         & .invoice-status.paid{
             background-color: $color-green-light;
@@ -144,7 +144,7 @@ body {
         }
     }
  
-    .invoice-item{
+    .invoice-row{
         display: grid;
         grid-template-columns: 100px auto auto auto 100px 50px;
         padding: 10px;
@@ -191,6 +191,9 @@ body {
         background-color: $color-blue;
     }
     .invoice-view-side{
+        &.hidden{
+            display: none;
+        }
         background-color: $color-white;
         width: 25vw;
         padding: 30px;
@@ -229,9 +232,16 @@ body {
         display: flex;
         align-items: center;
         cursor: pointer;
-        height: 40px;
-        svg {
-            padding-right: 5px
+        height: 45px;
+        .icon {
+            height: 30px;
+            width:30px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
         }
         &.violet{
             background-color: $color-violet;
@@ -374,15 +384,11 @@ body {
             display: flex;
             cursor: pointer;
             color: $color-black;
-            
-            .arrow{
-                color: $color-violet;
-                line-height: 10px;
-                padding:2px 12px;
-                &:hover{
-                    color: $color-violet-light
-                }
+            align-items: center;
+            svg{
+                padding-left: 7px;
             }
+           
       }
       
       
@@ -482,6 +488,8 @@ body {
                         padding: 20px;
                         display: flex;
                         flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
                         svg{
                             padding: 5px;
                             cursor: pointer;

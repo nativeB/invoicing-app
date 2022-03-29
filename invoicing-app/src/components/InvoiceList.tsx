@@ -1,5 +1,5 @@
 import React from 'react';
-import InvoiceItem from "./InvoiceItem"
+import InvoiceRow from "./InvoiceRow"
 type Props = {
     data: {[key:string]:any}
 }
@@ -12,7 +12,7 @@ class InvoiceList extends React.Component<Props> {
   render() {
     return (
       <>
-      { this.props.data.map( (item:any,index:number)=> <InvoiceItem key={index} item={item} />)}
+      { this.props.data.map( (item:any,index:number)=> <InvoiceRow key={index} item={item} />)}
       </>
     );
   }

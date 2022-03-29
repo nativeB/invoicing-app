@@ -1,8 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import Input from "./elements/Input";
 import Select from "./elements/Select";
 type Props = {
-
+  app: any
 }
 
 type State = {
@@ -21,9 +22,9 @@ class InvoiceNew extends React.Component<Props,State> {
     }
 
     render() {
- 
+      const className = `invoice-view-side ${!this.props.app.toggleInvoiceSideBar ? "hidden":"" }`
      return( 
-      <div className="invoice-view-side">
+      <div className={className}>
       <div className="invoice-edit">
           <div className="invoice-new-header">
             <h2>New Invoice</h2>
@@ -75,4 +76,17 @@ class InvoiceNew extends React.Component<Props,State> {
   }
 
 
-export default InvoiceNew
+  function mapStateToProps(state: { app: any; }) {
+    const app = state.app;
+    return {
+      app
+    };
+  }
+  
+  function mapDispatchToProps(dispatch: any) {
+    return {
+      setShowInvoiceMenu: (data: boolean) => dispatch({ type: "app/toggleInvoiceSideBar", payload: data })
+    };
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceNew);
