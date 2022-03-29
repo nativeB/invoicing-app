@@ -186,6 +186,34 @@ body {
         }
     }
 
+    .invoice-item{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+        justify-content: space-between;
+        .invoice-item-name{
+            width: 150px;
+
+        }
+        .invoice-item-qty{
+            width: 25px;
+        }
+        .invoice-item-price{
+            width: 120px;
+        }
+        .invoice-item-delete{
+            width: 50px;
+        }
+        .invoice-item-total{
+            width: 50px;
+        }
+
+    }
+
 
     .dark .invoice-view-side{
         background-color: $color-blue;
@@ -195,11 +223,12 @@ body {
             display: none;
         }
         background-color: $color-white;
-        width: 25vw;
+        width: 40vw;
         padding: 30px;
+        overflow: auto;
         h3{
             color: $color-violet !important;
-            padding: 35px 0px 5px 0px;
+            padding: 20px 0px 5px 0px;
         }
         .invoice-new-body{
             display: flex;
