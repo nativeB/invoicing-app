@@ -1,8 +1,8 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import React from "react";
 import { ReactComponent as Logo} from "../assets/logo.svg";
 import  Avatar from "../assets/image-avatar.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as Moon} from "../assets/icon-moon.svg";
+import { ReactComponent as Sun} from "../assets/icon-sun.svg";
 type State = {
    mode: "dark" | "light";
 }
@@ -35,9 +35,9 @@ class InvoiceSideHeader extends React.Component<Prop, State> {
 
     render() {
       const { mode } = this.state;
-      let icon = solid('moon');;
+      let icon = <Moon/>
       if(mode === "dark"){
-        icon = solid('sun');
+        icon = <Sun/>;
       }
 
      return( 
@@ -47,7 +47,9 @@ class InvoiceSideHeader extends React.Component<Prop, State> {
         </div>
         <div className="App-side-content">
           <div className="App-side-content-mode">
-            <FontAwesomeIcon  onClick={this.toggleMode} className="icon"  icon={icon} />
+            <div onClick={this.toggleMode} > 
+              {icon}
+              </div>
           </div>
         </div>
         <div className="App-side-footer"> 

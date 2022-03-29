@@ -1,11 +1,13 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import React from "react";
+import { connect } from "react-redux";
 import Button from "./elements/Button";
 import Dropdown from "./elements/Dropdown";
 type Props = {
     title: string;
     description: string;
     totalInvoices: number;
+    toggleInvoiceSideBar: () => void;
+    app: any;
 }
 
 class InvoiceHeader extends React.Component<Props> {
@@ -14,6 +16,7 @@ class InvoiceHeader extends React.Component<Props> {
        description: "",
        totalInvoices: 0
       };
+
     render() {
       let invoiceCount = ""
       if(this.props.totalInvoices){
@@ -29,12 +32,24 @@ class InvoiceHeader extends React.Component<Props> {
         </div>
         <div className="App-header-right">
         <Dropdown options={[{label:"Volvo",value:"volvo"},{label:"Saab",value:"saab"}]} label="Filter By Status" onChange={()=>console.log('test')} />
-        <Button icon={solid('plus-circle' )}label={"New Invoice"} onClick={()=>console.log('test')}   />
+        <Button icon="plus" iconClass={["icon"]} label={"New Invoice"} onClick={()=>this.props.toggleInvoiceSideBar()}   />
       </div>
       </div>
       );
     }
   }
 
+  function mapStateToProps(state: { app: any; }) {
+    const app = state.app;
+    return {
+      app
+    };
+  }
 
-export default InvoiceHeader
+  function mapDispatchToProps(dispatch: any) {
+    return {
+      toggleInvoiceSideBar: () => dispatch({ type: "app/toggleInvoiceSideBar" })
+    };
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceHeader);

@@ -23,11 +23,11 @@ class Button extends React.Component<Props> {
      
      let icon = <></>;
      if(this.props.icon === "plus"){
-         icon = <Plus className={(this.props.iconClass||[]).join(' ')} />
+         icon = <Plus/>
      }
      return( 
         <button onClick={this.props.onClick} className = {className} > 
-        <span className="icon"> {icon} </span>
+        <span className={(this.props.iconClass||[]).join(' ')} > {icon} </span>
         <span>{ this.props.label}</span>
         </button>
       );
