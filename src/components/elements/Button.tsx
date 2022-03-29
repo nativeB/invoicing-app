@@ -1,13 +1,12 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import {ReactComponent as Plus} from "../../assets/icon-plus.svg";
 type Props = {
     label: string,
     type: "violet"|"dark"|"dark-light"|"red"|"grey"|"grey-light"
     size: "medium"|"large"
     customClass?: string[],
-    iconClass: string[]
-    icon?: IconProp,
+    iconClass?: string[]
+    icon?: "plus" | "none",
     onClick: (event:any)=>void
 }
 
@@ -15,20 +14,20 @@ class Button extends React.Component<Props> {
     static defaultProps = {
         type: "violet",
         size: "medium",
+        icon: "plus",
         customClasses: [],
-        iconClass: []
       };
     render() {
 
      const className = `text-sm-bold ${this.props.type} ${this.props.size} ${(this.props.customClass || []).join(' ')}`;
      
      let icon = <></>;
-     if(this.props.icon){
-         icon = <FontAwesomeIcon  className={this.props.iconClass.join(' ')} icon={this.props.icon} />
+     if(this.props.icon === "plus"){
+         icon = <Plus className={(this.props.iconClass||[]).join(' ')} />
      }
      return( 
         <button onClick={this.props.onClick} className = {className} > 
-        {icon}
+        <span className="icon"> {icon} </span>
         <span>{ this.props.label}</span>
         </button>
       );

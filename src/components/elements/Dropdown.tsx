@@ -1,5 +1,4 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {ReactComponent as ArrowDown} from "../../assets/icon-arrow-down.svg";
 import React from "react";
 type Props = {
     label: string,
@@ -24,7 +23,7 @@ class Dropdown extends React.Component<Props> {
     <div className="dropdown">
     <div className={className}>
       <span className="dropbtn">{this.props.label}</span>
-      <FontAwesomeIcon  className="arrow"  icon={solid('angle-down')} />
+      <ArrowDown/>
       </div>
     <div className="dropdown-content text-sm">
     {options}

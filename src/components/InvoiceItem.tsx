@@ -1,7 +1,5 @@
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-
+import {ReactComponent as ArrowRight} from "../assets/icon-arrow-right.svg";
 type Props = {
     item: {
       id: string;
@@ -54,7 +52,7 @@ class InvoiceItem extends React.Component<Props> {
            <p > {this.upperCaseFirst(this.props.item.status)}</p>
        </div>
        <div>
-        <FontAwesomeIcon  className="arrow"  icon={solid('angle-right')} />
+        <ArrowRight/>
         </div>
       </div>
     );
