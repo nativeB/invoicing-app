@@ -7,6 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import InvoiceSideHeader from './components/InvoiceSideBar';
+import InvoiceNew from './components/InvoiceNew';
 function App() {
   return (
       <Router>
@@ -18,7 +19,10 @@ function App() {
           </Route>
         </Routes>
 
+      <div className='App-side'>
         <InvoiceSideHeader/>
+        <InvoiceNew/>
+      </div>
       </div>
     </Router>
   );

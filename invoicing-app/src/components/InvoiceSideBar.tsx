@@ -41,7 +41,7 @@ class InvoiceSideHeader extends React.Component<Prop, State> {
       }
 
      return( 
-      <div className="App-side">
+      <div className="App-side-menu">
         <div className="App-side-header">
           <Logo/>
         </div>
