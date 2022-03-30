@@ -187,29 +187,31 @@ body {
     }
 
     .invoice-item{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        text-align: center;
-        width: 100%;
-        justify-content: space-between;
-        .invoice-item-name{
-            width: 150px;
-
-        }
-        .invoice-item-qty{
-            width: 25px;
-        }
-        .invoice-item-price{
-            width: 120px;
-        }
-        .invoice-item-delete{
-            width: 50px;
-        }
-        .invoice-item-total{
-            width: 50px;
+            display: grid;
+            grid-template-columns: 35% 13% 30% 15% 8%;
+            height: 60px;
+            text-align: left;
+            width: 100%;
+            &.head{
+                height: initial;
+            }
+        .invoice-item-pad{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            
+            padding-right: 8px;
+            h3 {
+                padding: 0;
+                margin: 0;
+                
+            }
+            .labels{
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
         }
 
     }
@@ -226,7 +228,7 @@ body {
         width: 40vw;
         padding: 30px;
         overflow: auto;
-        h3{
+        h3.heading{
             color: $color-violet !important;
             padding: 20px 0px 5px 0px;
         }
@@ -251,6 +253,9 @@ body {
     }
 
 
+    .full-width{
+        width: 100%;
+    }
 
     button{
         @extend .text-xs;
@@ -260,6 +265,7 @@ body {
         color: white;
         display: flex;
         align-items: center;
+        justify-content: center;
         cursor: pointer;
         height: 45px;
         .icon {
@@ -319,6 +325,7 @@ body {
         }
         &.large{
             padding: 10px;
+            width: 100%;
         }
         &.medium{
             justify-content: space-between;
