@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const InvoiceSlice = createSlice({
   name: 'app',
   initialState: {
-    data: [],
+    data: []
   },
   reducers: {
     setData: (state, action) => {
@@ -23,7 +23,7 @@ export const InvoiceSlice = createSlice({
           })
           state.data = data
     }
-  },
+  }
 }
 })
 

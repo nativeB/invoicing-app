@@ -1,14 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
+import { generateDefaultInvoice } from "../helpers";
+import Button from "./elements/Button";
 import Input from "./elements/Input";
 import Select from "./elements/Select";
 import InvoiceItem from "./InvoiceItem";
+import InvoiceItemHead from "./InvoiceItemHead";
 type Props = {
-  app: any
+  invoice: any;
+  app: any;
+  setOneInvoice: (invoiceItem:any) => void;
 }
 
 type State = {
   paymentTerms: { label: string, value: string }[],
+  invoiceItem: any;
 }
 class InvoiceNew extends React.Component<Props,State> {
     
@@ -18,12 +24,47 @@ class InvoiceNew extends React.Component<Props,State> {
             paymentTerms: [
                 { label: "Due on Receipt", value: "Due on Receipt" },
                 { label: "Next 30 Days", value: "Next 30 Days" },
-            ]
+            ],
+            invoiceItem: generateDefaultInvoice()
         }
+        this.addItem = this.addItem.bind(this)
+        this.removeItem = this.removeItem.bind(this)
+        this.updateItem = this.updateItem.bind(this)
+        this.saveInvoice = this.saveInvoice.bind(this)
     }
-
+    addItem(){
+      this.setState(prevState => ({
+        invoiceItem: {
+          ...prevState.invoiceItem,
+          items: [...prevState.invoiceItem.items, generateDefaultInvoice()]
+        }
+      }))
+    }
+    removeItem(id: string){
+      this.setState(prevState => ({
+        invoiceItem: {
+          ...prevState.invoiceItem,
+          items: prevState.invoiceItem.items.filter((item:any)=> item.id !== id)
+        }
+      }))
+    }
+    updateItem(id:string,key:string,value:any){
+      this.setState(prevState => ({
+        invoiceItem: {
+          ...prevState.invoiceItem,
+          items: prevState.invoiceItem.items.map((item:any)=> item.id === id ? {...item, [key]: value} : item)
+        }
+      }))
+    }
+    
+    saveInvoice(){
+      this.props.setOneInvoice(this.state.invoiceItem)
+    }
     render() {
+      console.log(this.state.invoiceItem)
       const className = `invoice-view-side ${!this.props.app.toggleInvoiceSideBar ? "hidden":"" }`
+
+      const items = this.state.invoiceItem.items.map((item:any, index:number) => <InvoiceItem key={index} item={item} setItem={(key:string,value:any)=>this.updateItem(item.id,key,value)} removeItem={(key:string)=>this.removeItem(key)} />)
      return( 
       <div className={className}>
       <div className="invoice-edit">
@@ -31,7 +72,7 @@ class InvoiceNew extends React.Component<Props,State> {
             <h2>New Invoice</h2>
           </div>
           <div className="invoice-new-body">
-            <h3 className="text-sm-bold">Fill Form</h3>
+            <h3 className="text-sm-bold heading">Fill Form</h3>
             <section>
               <Input customClass={['input-full']}  label={"Street Address"} onInput={()=>console.log('test')} type= {"grey"} />
             </section>
@@ -41,7 +82,7 @@ class InvoiceNew extends React.Component<Props,State> {
               <Input customClass={['input-xs']} label={"Country"} onInput={()=>console.log('test')} type= {"grey"} />
             </section>
 
-            <h3 className="text-sm-bold">Bill To</h3>
+            <h3 className="text-sm-bold heading">Bill To</h3>
             <section>
               <Input customClass={['input-full']}  label={"Client's Name"} onInput={()=>console.log('test')} type= {"grey"} />
             </section>
@@ -68,9 +109,11 @@ class InvoiceNew extends React.Component<Props,State> {
               <Input customClass={['input-full']} label={"Project Description"} onInput={()=>console.log('test')} type= {"grey"}  placeholder="e.g. Graphic Design Service"/>
             </section>
 
-            <h3 className="text-sm-bold">Item List</h3>
+            <h3 className="text-sm-bold heading">Item List</h3>
             <section>
-              <InvoiceItem/>
+              <InvoiceItemHead/>
+              {items}
+              <Button icon="plus" label={"New Invoice"} customClass={["large", "dark"]} onClick={this.addItem}  />
             </section>
 
             </div>
@@ -82,16 +125,18 @@ class InvoiceNew extends React.Component<Props,State> {
   }
 
 
-  function mapStateToProps(state: { app: any; }) {
+  function mapStateToProps(state: { invoice: any; app:any; }) {
+    const invoice = state.invoice;
     const app = state.app;
     return {
+      invoice,
       app
     };
   }
   
   function mapDispatchToProps(dispatch: any) {
     return {
-      setShowInvoiceMenu: (data: boolean) => dispatch({ type: "app/toggleInvoiceSideBar", payload: data })
+      setOneInvoice: (data: boolean) => dispatch({ type: "invoice/setOneInvoice", payload: data }),
     };
   }
 

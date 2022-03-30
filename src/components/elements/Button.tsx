@@ -19,7 +19,7 @@ class Button extends React.Component<Props> {
       };
     render() {
 
-     const className = `text-sm-bold ${this.props.type} ${this.props.size} ${(this.props.customClass || []).join(' ')}`;
+     const className = `text-sm-bold ${this.props.type} ${(this.props.customClass || []).join(' ')}`;
      
      let icon = <></>;
      if(this.props.icon === "plus"){

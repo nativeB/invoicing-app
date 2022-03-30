@@ -6,7 +6,7 @@ type Props = {
     inputType?: "text" | "date"
     customClass?: string[],
     placeholder?: string;
-    value?: string;
+    value?: string|number;
     onInput: (event:any)=>void
 }
 
@@ -20,9 +20,10 @@ class Input extends React.Component<Props> {
     render() {
 
      const className = `input-wrapper ${(this.props.customClass || []).join(' ')}`;
+     const label =  this.props.label? <label>{this.props.label}</label>: <></>;
       return( 
         <div className={className}>
-          <label> {this.props.label}</label>
+          {label}
           <input type={this.props.inputType} value={this.props.value} placeholder={this.props.placeholder} onInput={this.props.onInput}  />
         </div>
      );

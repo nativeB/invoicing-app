@@ -6,10 +6,22 @@ type Props = {
       name: string
       quantity: number,
       price: number,
-  }
+      id: string
+  },
+  setItem: (key:string,value:any)=>void,
+  removeItem: (key:string)=>void
 }
 
 class InvoiceItem extends React.Component<Props> {
+   constructor(props:Props) {
+    super(props);
+    this.state = {
+      item: this.props.item,
+      setItem: this.props.setItem,
+      removeItem: this.props.removeItem
+    }
+  }
+  
   static defaultProps = {
     item: {
       name: "",
@@ -17,16 +29,29 @@ class InvoiceItem extends React.Component<Props> {
       price: 0
     }
   };
-  
+ 
+
   render() {
     
     return (
       <div className='invoice-item'>
-       <Input customClass={["invoice-item-name"]} label={"Item Name"} onInput={()=>console.log('test')} inputType={'text'} />
-       <Input customClass={['invoice-item-qty']} label={"Qty"} onInput={()=>console.log('test')} inputType={'text'} />
-       <Input customClass={['invoice-item-price']} label={"Price"} onInput={()=>console.log('test')} inputType={'text'} />
-        <span className='text-sm'>Total</span>
-        <Delete/>
+        <div className={"invoice-item-pad"}>
+          <Input value={this.props.item.name}  customClass={["input-full"]} label={""} onInput={(event)=>this.props.setItem("",event?.target.value)} inputType={'text'} />
+        </div>
+        <div className={"invoice-item-pad"}>
+          <Input  value={this.props.item.quantity}  customClass={["input-full"]} label={""} onInput={(event)=>this.props.setItem("",event?.target.value)} inputType={'text'} />
+        </div>
+        <div className={"invoice-item-pad"}>
+          <Input value={this.props.item.price} customClass={["input-full"]} label={""} onInput={(event)=>this.props.setItem("",event?.target.value)} inputType={'text'} />
+        </div>
+        <div className={"invoice-item-pad"}>
+          <div className='labels'><span  className='text-sm'>{this.props.item.quantity}</span></div>
+        </div>
+        <div className={"invoice-item-pad"}>
+        <div className= 'labels'>
+          <Delete onClick={()=>this.props.removeItem(this.props.item.id)} />
+        </div>
+        </div>
       </div>
     );
   }
