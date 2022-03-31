@@ -188,7 +188,7 @@ body {
 
     .invoice-item{
             display: grid;
-            grid-template-columns: 35% 13% 30% 15% 8%;
+            grid-template-columns: 35% 10% 30% 15% 8%;
             height: 60px;
             text-align: left;
             width: 100%;
@@ -227,7 +227,6 @@ body {
         background-color: $color-white;
         width: 40vw;
         padding: 30px;
-        overflow: auto;
         h3.heading{
             color: $color-violet !important;
             padding: 20px 0px 5px 0px;
@@ -235,7 +234,8 @@ body {
         .invoice-new-body{
             display: flex;
             flex-direction: column;
-
+            overflow: auto;
+            max-height: 87vh;
             section {
                 display: flex;
                 justify-content: space-between;
@@ -243,6 +243,25 @@ body {
                 flex-wrap: wrap;
             }
             
+        }
+        .invoice-new-footer{
+            display: flex;
+            justify-content: space-between;
+            padding-top: 10px;
+
+            .invoice-new-footer-left{
+                display: flex;
+                flex-direction: row;
+            }
+            .invoice-new-footer-right{
+                display: flex;
+                flex-direction: row;
+                justify-content:space-between;
+
+                & button{
+                    margin-right: 20px;
+                }
+            }
         }
        
     }
@@ -257,6 +276,26 @@ body {
         width: 100%;
     }
 
+    .dark .button {
+        &.button-4 {
+            color: $color-grey-light;
+            background-color: $color-blue-light;
+            &:hover {
+                background-color: $color-blue;
+            }
+        }
+
+        &.button-3 {
+            color: $color-blue;
+            background-color: $color-grey-light;
+            &:hover {
+                background-color: $color-white;
+                color: $color-blue-light;
+            }
+    }
+}
+
+
     button{
         @extend .text-xs;
         outline:0;
@@ -267,7 +306,7 @@ body {
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        height: 45px;
+        height: 40px;
         .icon {
             height: 30px;
             width:30px;
@@ -278,51 +317,56 @@ body {
             justify-content: center;
             margin-right: 10px;
         }
-        &.violet{
+
+        &.default{
             background-color: $color-violet;
             color: white;
-            &:hover{
+            &:hover {
                 background-color: $color-violet-light;
             }
         }
-        
 
-        &.dark {
-            color: $color-grey;
+
+        &.button-4 {
+            color: $color-ube;
             background-color: $color-blue-light;
             &:hover {
                 background-color: $color-black;
             }
         }
-        &.dark-light {
-            color: $color-grey-light;
-            background-color: $color-blue-light;
+        
+        &.button-7 {
+            color: $color-white;
+            background-color: $color-grey;
             &:hover {
-                background-color: $color-black-light;
+                background-color: $color-black;
             }
         }
-        &.red {
+        &.button-3 {
+            color: $color-blue-light;
+            background-color: $color-grey-light;
+            &:hover {
+                background-color: $color-ube;
+                color: $color-blue-light;
+            }
+        }
+        &.button-6 {
+            color: $color-ube;
+            background-color: white;
+            &:hover {
+                background-color: $color-ube;
+                color: $color-blue-light;
+            }
+        }
+
+        &.button-5{
             color: white;
             background-color:$color-red;
             &:hover {
                 background-color: $color-red-light;
             }
         }
-        &.grey-light{
-            color: $color-ube;
-            background-color:$color-white;
-            &:hover {
-                background-color: $color-grey-light;
-            }
-        }
-        &.grey{
-            color: $color-white;
-            background-color:$color-black-light;
-            &:hover {
-                background-color: $color-white;
-                color: $color-grey-light
-            }
-        }
+       
         &.large{
             padding: 10px;
             width: 100%;

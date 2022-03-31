@@ -1,29 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+import { cloneDeep } from 'lodash-es'
+import data from "../../../data/data.json"
 export const InvoiceSlice = createSlice({
-  name: 'app',
+  name: 'invoice',
   initialState: {
-    data: []
+    data: data || []
   },
   reducers: {
     setData: (state, action) => {
       state.data = action.payload
     },
     setOneInvoice: (state, action) => {
-      switch(action.payload.type) {
-        case "add":
-          state.data = [...state.data, action.payload] as any
-          break;
-        case "update":
-          const data:any = state.data.map((invoice:any) => {
-            if(invoice.id === action.payload.id) {
-              return action.payload
-            }
-            return invoice
-          })
-          state.data = data
+        const { id } = action.payload
+        const invoiceIndex = state.data.findIndex(invoice => invoice.id === id)
+        if(invoiceIndex !== -1){
+          const invoice = cloneDeep(state.data)
+          invoice[invoiceIndex] = action.payload
+            state.data = invoice
+        }else{
+          state.data = [...state.data, action.payload]
+        }
     }
-  }
 }
 })
 

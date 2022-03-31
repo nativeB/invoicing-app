@@ -32,7 +32,7 @@ class InvoiceHeader extends React.Component<Props> {
         </div>
         <div className="App-header-right">
         <Dropdown options={[{label:"Volvo",value:"volvo"},{label:"Saab",value:"saab"}]} label="Filter By Status" onChange={()=>console.log('test')} />
-        <Button icon="plus" iconClass={["icon"]} label={"New Invoice"} onClick={()=>this.props.toggleInvoiceSideBar()}   />
+        <Button customClass={["default"]} icon="plus" iconClass={["icon "]} label={"New Invoice"} onClick={()=>this.props.toggleInvoiceSideBar()}   />
       </div>
       </div>
       );
