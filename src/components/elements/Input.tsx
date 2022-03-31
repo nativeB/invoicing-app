@@ -8,6 +8,7 @@ type Props = {
     placeholder?: string;
     value?: string|number;
     onInput: (event:any)=>void
+    required?: boolean
 }
 
 class Input extends React.Component<Props> {
@@ -15,7 +16,8 @@ class Input extends React.Component<Props> {
         type: "violet",
         size: "medium",
         customClass: [],
-        inputType: "text"
+        inputType: "text",
+        required: false
       };
     render() {
 
@@ -24,7 +26,7 @@ class Input extends React.Component<Props> {
       return( 
         <div className={className}>
           {label}
-          <input type={this.props.inputType} value={this.props.value} placeholder={this.props.placeholder} onInput={this.props.onInput}  />
+          <input required={this.props.required} type={this.props.inputType} value={this.props.value} placeholder={this.props.placeholder} onInput={(event:any)=>this.props.onInput(event.target.value)}  />
         </div>
      );
     }

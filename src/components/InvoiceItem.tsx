@@ -6,28 +6,24 @@ type Props = {
       name: string
       quantity: number,
       price: number,
-      id: string
+      id: string,
+      total: number
   },
   setItem: (key:string,value:any)=>void,
-  removeItem: (key:string)=>void
+  removeItem: (key:string)=>void,
+  required: boolean
 }
 
 class InvoiceItem extends React.Component<Props> {
-   constructor(props:Props) {
-    super(props);
-    this.state = {
-      item: this.props.item,
-      setItem: this.props.setItem,
-      removeItem: this.props.removeItem
-    }
-  }
-  
+
   static defaultProps = {
     item: {
       name: "",
       quantity: 0,
-      price: 0
-    }
+      price: 0,
+      total: 0
+    },
+    required: false
   };
  
 
@@ -36,16 +32,16 @@ class InvoiceItem extends React.Component<Props> {
     return (
       <div className='invoice-item'>
         <div className={"invoice-item-pad"}>
-          <Input value={this.props.item.name}  customClass={["input-full"]} label={""} onInput={(event)=>this.props.setItem("",event?.target.value)} inputType={'text'} />
+          <Input required={this.props.required} value={this.props.item.name}  customClass={["input-full"]} label={""} onInput={(value)=>this.props.setItem("name",value)} inputType={'text'} />
         </div>
         <div className={"invoice-item-pad"}>
-          <Input  value={this.props.item.quantity}  customClass={["input-full"]} label={""} onInput={(event)=>this.props.setItem("",event?.target.value)} inputType={'text'} />
+          <Input required={this.props.required}  value={this.props.item.quantity}  customClass={["input-full"]} label={""} onInput={(value)=>{this.props.setItem("quantity",value)}} inputType={'text'} />
         </div>
         <div className={"invoice-item-pad"}>
-          <Input value={this.props.item.price} customClass={["input-full"]} label={""} onInput={(event)=>this.props.setItem("",event?.target.value)} inputType={'text'} />
+          <Input required={this.props.required}  value={this.props.item.price} customClass={["input-full"]} label={""} onInput={(value)=>{this.props.setItem("price",value)}} inputType={'text'} />
         </div>
         <div className={"invoice-item-pad"}>
-          <div className='labels'><span  className='text-sm'>{this.props.item.quantity}</span></div>
+          <div className='labels'><span  className='text-sm'>{this.props.item.total}</span></div>
         </div>
         <div className={"invoice-item-pad"}>
         <div className= 'labels'>

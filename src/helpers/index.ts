@@ -13,10 +13,10 @@ export function generateInvoiceItems(count:number){
     for(let i = 0; i < count; i++){
         const item = {
             id: randomID(),
-            description: `Item ${i+1}`,
             quantity: 0,
             price: 0,
             total: 0,
+            name: ""
         }
         items.push(item)
     }

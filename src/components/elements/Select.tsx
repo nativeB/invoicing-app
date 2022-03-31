@@ -5,13 +5,15 @@ type Props = {
     customClass?: string[],
     placeholder?: string;
     onChange: (event:any)=>void;
-    options: {label: string, value: string}[]
+    options: {label: string, value: string}[],
+    required?: boolean
 }
 
 class Select extends React.Component<Props> {
   static defaultProps = {
     customClasses: [],
     options: [],
+    required: false
   };
 
   render() {
@@ -20,10 +22,9 @@ class Select extends React.Component<Props> {
     return (
       <div className={className}>
         <label>
-          {' '}
           {this.props.label}
         </label>
-        <select placeholder={this.props.placeholder} onChange={this.props.onChange} >
+        <select required={this.props.required} placeholder={this.props.placeholder} onChange={(event:any)=>this.props.onChange(event.target.value)} >
           {options}
         </select>
 
