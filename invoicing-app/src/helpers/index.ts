@@ -22,13 +22,15 @@ export function generateInvoiceItems(count:number){
     }
     return items
 }
+export function formatDate(date:Date) {
+    return  new Date(date).toLocaleDateString().split('/').reverse().join('-')
+}
 export function generateDefaultInvoice() {
     return {
         "id": randomID(),
-        "createdAt": "",
-        "paymentDue": "",
+        "paymentDue": formatDate(new Date()),
         "description": "",
-        "paymentTerms": 0,
+        "paymentTerms": 1,
         "clientName": "",
         "clientEmail": "",
         "status": "",
@@ -45,6 +47,7 @@ export function generateDefaultInvoice() {
         "country": ""
         },
         "items": generateInvoiceItems(1),
-        "total": 0
+        "total": 0,
+        "createdAt": formatDate(new Date())
 }
 }
