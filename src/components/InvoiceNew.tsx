@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import {cloneDeep, set} from "lodash-es"
-import { generateDefaultInvoice } from "../helpers";
+import { formatDate, generateDefaultInvoice } from "../helpers";
 import Button from "./elements/Button";
 import Input from "./elements/Input";
 import Select from "./elements/Select";
@@ -15,7 +15,7 @@ type Props = {
 }
 
 type State = {
-  paymentTerms: { label: string, value: string }[],
+  paymentTerms: { label: string, value: any }[],
   invoiceItem: any;
   required: boolean;
 }
@@ -23,10 +23,12 @@ class InvoiceNew extends React.Component<Props,State> {
     
     constructor(props: Props) {
         super(props);
+
         this.state = {
             paymentTerms: [
-                { label: "Due on Receipt", value: "Due on Receipt" },
-                { label: "Next 30 Days", value: "Next 30 Days" },
+                { label: "Next Day", value: 1 },
+                { label: "Next 7 Days", value: 7 },
+                { label: "Next 30 Days", value: 30 },
             ],
             invoiceItem: generateDefaultInvoice(),
             required: true
@@ -41,8 +43,18 @@ class InvoiceNew extends React.Component<Props,State> {
     setInvoiceProperty(key:string,value:any){
 
        const invoice = cloneDeep(this.state.invoiceItem)
+
+       if(key === 'paymentTerms') {
+         const created = new Date(invoice.createdAt);
+         created.setDate(created.getDate() + parseInt(value));
+         console.log(created.getDate(), parseInt(value))
+         const paymentDue = formatDate(created)
+         set(invoice,'paymentDue',paymentDue)
+         console.log(invoice)
+       }
+
+
        set(invoice,key,value)
-       console.log({invoice})
       this.setState({
         invoiceItem: {
             ...invoice
@@ -70,21 +82,29 @@ class InvoiceNew extends React.Component<Props,State> {
     updateItem(id:string,key:string,value:any){
       this.setState(prevState => {
         const item = prevState.invoiceItem.items.find((item:any)=> item.id === id);
-        let total = 0;
+        let total = 0, itemTotal = 0;
 
-        if(key === "price"){
+        if(key === "price" && item.quantity){
             total = value * item.quantity
         }
-        if(key === "quantity"){
+        if(key === "quantity" && item.price){
             total = item.price * value
         }
 
-        return {
+
+        const state =  {
           invoiceItem: {
             ...prevState.invoiceItem,
             items: prevState.invoiceItem.items.map((item:any)=> item.id === id ? {...item, [key]: value, total} : item)
           }
         }
+        itemTotal = state.invoiceItem.items.reduce((total:number,current:any)=>{
+          return total + current.total
+        },0)
+        state.invoiceItem['total'] = itemTotal
+
+        return state
+
       })
     }
     
@@ -92,6 +112,7 @@ class InvoiceNew extends React.Component<Props,State> {
     handleSubmit(e:any){
       e.preventDefault();
       this.props.setOneInvoice({...this.state.invoiceItem,status:"pending"})
+      this.props.toggleInvoiceSideBar();
     }
 
     render() {
@@ -108,39 +129,39 @@ class InvoiceNew extends React.Component<Props,State> {
               <div className="invoice-new-body">
                 <h3 className="text-sm-bold heading">Fill Form</h3>
                 <section>
-                  <Input required={this.state.required} customClass={['input-full']}  label={"Street Address"} onInput={(value)=> this.setInvoiceProperty("senderAddress.street", value)}  />
+                  <Input required={this.state.required} customClass={['input-full']}  label={"Street Address"} onInput={(value)=> this.setInvoiceProperty("senderAddress.street", value)} value={this.state.invoiceItem.senderAddress.street}  />
                 </section>
                 <section>
-                  <Input required={this.state.required} customClass={['input-xs']} label={"City"} onInput={(value)=> this.setInvoiceProperty("senderAddress.city", value)}  />
-                  <Input required={this.state.required} customClass={['input-xs']} label={"Post Code"} onInput={(value)=> this.setInvoiceProperty("senderAddress.postCode", value)}  />
-                  <Input required={this.state.required} customClass={['input-xs']} label={"Country"} onInput={(value)=> this.setInvoiceProperty("senderAddress.country", value)}  />
+                  <Input required={this.state.required} customClass={['input-xs']} label={"City"} onInput={(value)=> this.setInvoiceProperty("senderAddress.city", value)}  value={this.state.invoiceItem.senderAddress.city} />
+                  <Input required={this.state.required} customClass={['input-xs']} label={"Post Code"} onInput={(value)=> this.setInvoiceProperty("senderAddress.postCode", value)} value={this.state.invoiceItem.senderAddress.postCode}  />
+                  <Input required={this.state.required} customClass={['input-xs']} label={"Country"} onInput={(value)=> this.setInvoiceProperty("senderAddress.country", value)}  value={this.state.invoiceItem.senderAddress.country} />
                 </section>
 
                 <h3 className="text-sm-bold heading">Bill To</h3>
                 <section>
-                  <Input required={this.state.required} customClass={['input-full']}  label={"Client's Name"} onInput={(value)=> this.setInvoiceProperty("clientName", value)}  />
+                  <Input required={this.state.required} customClass={['input-full']}  label={"Client's Name"} onInput={(value)=> this.setInvoiceProperty("clientName", value)} value={this.state.invoiceItem.clientName}  />
                 </section>
                 <section>
-                  <Input required={this.state.required} customClass={['input-full']}  label={"Client's Email"} onInput={(value)=> this.setInvoiceProperty("clientEmail", value)}  />
+                  <Input required={this.state.required} customClass={['input-full']}  label={"Client's Email"} onInput={(value)=> this.setInvoiceProperty("clientEmail", value)} value={this.state.invoiceItem.clientEmail} />
                 </section>
                 <section>
-                  <Input required={this.state.required} customClass={['input-full']}  label={"Street Address"} onInput={(value)=> this.setInvoiceProperty("clientAddress.street", value)}  />
+                  <Input required={this.state.required} customClass={['input-full']}  label={"Street Address"} onInput={(value)=> this.setInvoiceProperty("clientAddress.street", value)}  value={this.state.invoiceItem.clientAddress.street} />
                 </section>
       
               
                 <section>
-                  <Input required={this.state.required} customClass={['input-xs']} label={"City"} onInput={(value)=> this.setInvoiceProperty("clientAddress.city", value)}  />
-                  <Input required={this.state.required} customClass={['input-xs']} label={"Post Code"} onInput={(value)=> this.setInvoiceProperty("clientAddress.postCode", value)}  />
-                  <Input required={this.state.required} customClass={['input-xs']} label={"Country"} onInput={(value)=> this.setInvoiceProperty("clientAddress.country", value)}  />
+                  <Input required={this.state.required} customClass={['input-xs']} label={"City"} onInput={(value)=> this.setInvoiceProperty("clientAddress.city", value)} value={this.state.invoiceItem.clientAddress.city} />
+                  <Input required={this.state.required} customClass={['input-xs']} label={"Post Code"} onInput={(value)=> this.setInvoiceProperty("clientAddress.postCode", value)} value={this.state.invoiceItem.clientAddress.postCode}  />
+                  <Input required={this.state.required} customClass={['input-xs']} label={"Country"} onInput={(value)=> this.setInvoiceProperty("clientAddress.country", value)}  value={this.state.invoiceItem.clientAddress.country} />
                 </section>
 
                 <section>
-                  <Input required={this.state.required} value='' customClass={['input-sm']} label={"Invoice Date"} onInput={(value)=> this.setInvoiceProperty("paymentDue", value)} inputType={"date"} />
-                  <Select required={this.state.required} onChange={(value)=> this.setInvoiceProperty("paymentTerms", value)}   customClass={['input-sm']} options={this.state.paymentTerms} label={"Payment Terms"}   />
+                  <Input required={this.state.required} value={this.state.invoiceItem.paymentDue} customClass={['input-sm']} label={"Invoice Date"} onInput={(value)=> this.setInvoiceProperty("paymentDue", value)} inputType={"date"}  />
+                  <Select required={this.state.required} onChange={(value)=> this.setInvoiceProperty("paymentTerms", value)}   customClass={['input-sm']} options={this.state.paymentTerms} label={"Payment Terms"}  value={this.state.invoiceItem.paymentTerms}  />
                 </section>
 
                 <section>
-                  <Input required={this.state.required} customClass={['input-full']} label={"Project Description"} onInput={(value)=> this.setInvoiceProperty("description", value)}   placeholder="e.g. Graphic Design Service"/>
+                  <Input required={this.state.required} customClass={['input-full']} label={"Project Description"} onInput={(value)=> this.setInvoiceProperty("description", value)}   placeholder="e.g. Graphic Design Service" value={this.state.invoiceItem.description}/>
                 </section>
 
                 <h3 className="text-sm-bold heading">Item List</h3>
@@ -153,13 +174,13 @@ class InvoiceNew extends React.Component<Props,State> {
                 </div>
               <div className="invoice-new-footer">
                 <div className="invoice-new-footer-left">
-                  <Button  label={"Discard"} customClass={["button-6"]} onClick={this.props.toggleInvoiceSideBar}  />
+                  <Button  type="button"  label={"Discard"} customClass={["button-6"]} onClick={this.props.toggleInvoiceSideBar}  />
                 </div>
                 <div className="invoice-new-footer-right">
                   <Button type="button" label={"Save to Draft"} customClass={["button-7"]} 
                   onClick={()=>{ 
-                    this.props.setOneInvoice({...this.state.invoiceItem,status:"draft"})
-                    
+                    this.props.setOneInvoice({...this.state.invoiceItem,status:"draft"});
+                    this.props.toggleInvoiceSideBar();
                     }}  />
                   <Button  type="submit" label={"Save & Send"} customClass={["default"]}  />
                 </div>

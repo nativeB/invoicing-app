@@ -15,7 +15,6 @@ type Props = {
 }
 
 class InvoiceItem extends React.Component<Props> {
-
   static defaultProps = {
     item: {
       name: "",
@@ -32,16 +31,16 @@ class InvoiceItem extends React.Component<Props> {
     return (
       <div className='invoice-item'>
         <div className={"invoice-item-pad"}>
-          <Input required={this.props.required} value={this.props.item.name}  customClass={["input-full"]} label={""} onInput={(value)=>this.props.setItem("name",value)} inputType={'text'} />
+          <Input required={this.props.required} value={this.props.item.name||""}  customClass={["input-full"]} label={""} onInput={(value)=>this.props.setItem("name",value)} inputType={'text'} />
         </div>
         <div className={"invoice-item-pad"}>
-          <Input required={this.props.required}  value={this.props.item.quantity}  customClass={["input-full"]} label={""} onInput={(value)=>{this.props.setItem("quantity",value)}} inputType={'text'} />
+          <Input required={this.props.required}  value={this.props.item.quantity||0}  customClass={["input-full"]} label={""} onInput={(value)=>{this.props.setItem("quantity",value)}} inputType={'text'} />
         </div>
         <div className={"invoice-item-pad"}>
-          <Input required={this.props.required}  value={this.props.item.price} customClass={["input-full"]} label={""} onInput={(value)=>{this.props.setItem("price",value)}} inputType={'text'} />
+          <Input required={this.props.required}  value={this.props.item.price||0} customClass={["input-full"]} label={""} onInput={(value)=>{this.props.setItem("price",value)}} inputType={'text'} />
         </div>
         <div className={"invoice-item-pad"}>
-          <div className='labels'><span  className='text-sm'>{this.props.item.total}</span></div>
+          <div className='labels'><span  className='text-sm'>{this.props.item.total||0}</span></div>
         </div>
         <div className={"invoice-item-pad"}>
         <div className= 'labels'>
