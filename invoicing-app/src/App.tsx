@@ -7,7 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import InvoiceSideHeader from './components/InvoiceSideBar';
-import InvoiceNew from './components/InvoiceNew';
+import InvoiceSideContent from './views/InvoicesSideContent';
 function App() {
   return (
       <Router>
@@ -21,7 +21,7 @@ function App() {
 
       <div className='App-side'>
         <InvoiceSideHeader/>
-        <InvoiceNew/>
+        <InvoiceSideContent/>
       </div>
       </div>
     </Router>

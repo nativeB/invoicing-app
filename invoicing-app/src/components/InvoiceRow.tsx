@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {ReactComponent as ArrowRight} from "../assets/icon-arrow-right.svg";
 type Props = {
     item: {
@@ -6,8 +7,12 @@ type Props = {
       paymentDue: string;
       clientName: string;
       total: number;
-      status: "paid" | "pending"| "draft"
-  }
+      status: "paid" | "pending"| "draft",
+      
+  },
+  toggleInvoiceSideBar: (type: string) => void;
+  setEditingInvoice: (invoice: any) => void;
+  app: any;
 }
 
 class InvoiceRow extends React.Component<Props> {
@@ -42,7 +47,9 @@ class InvoiceRow extends React.Component<Props> {
       statusClass = "draft"
     }
     return (
-      <div className='invoice-row '>
+      <div className='invoice-row ' onClick={()=>{
+        this.props.setEditingInvoice(this.props.item);this.props.toggleInvoiceSideBar("edit")
+      }}>
         <h3 className='text-sm-bold'> <span className='pound'>#</span>{this.props.item.id}</h3>
         <h3 className='text-sm'> {this.formatDate(this.props.item.paymentDue)}</h3>
         <h3 className='text-sm'> {this.props.item.clientName}</h3>
@@ -60,4 +67,18 @@ class InvoiceRow extends React.Component<Props> {
 }
 
 
-export default InvoiceRow;
+function mapStateToProps(state: { app: any; }) {
+  const app = state.app;
+  return {
+    app
+  };
+}
+
+function mapDispatchToProps(dispatch: any) {
+  return {
+    toggleInvoiceSideBar: (type: string) => dispatch({ type: "app/toggleInvoiceSideBar", payload: type }),
+    setEditingInvoice: (invoice: any) => dispatch({ type: "invoice/setEditingInvoice", payload: invoice })
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceRow);

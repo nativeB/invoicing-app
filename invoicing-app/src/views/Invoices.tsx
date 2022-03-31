@@ -7,7 +7,8 @@ import InvoiceHeader from '../components/InvoiceListHeader';
 type Prop = {
   invoice: { 
     data:  { [key:string]: any}[]
-    }
+    },
+    toggleInvoiceSideBar: (type:string) => void,
 }
 class Invoices extends React.Component<Prop> {
   static defaultProps = {
@@ -22,7 +23,7 @@ class Invoices extends React.Component<Prop> {
           {
             this.props.invoice.data && this.props.invoice.data.length? 
             <InvoiceList data={this.props.invoice.data} />
-            :<InvoiceEmpty />
+            : <InvoiceEmpty />
           }
         </div>
       );
@@ -40,7 +41,7 @@ function mapStateToProps(state: { invoice: any; app:any; }) {
 function mapDispatchToProps(dispatch: any) {
   return {
     setOneInvoice: (data: any) => dispatch({ type: "invoice/setOneInvoice", payload: data }),
-    toggleInvoiceSideBar: () => dispatch({ type: "app/toggleInvoiceSideBar" })
+    toggleInvoiceSideBar: (type:string) => dispatch({ type: "app/toggleInvoiceSideBar", payload: type })
   };
 }
 

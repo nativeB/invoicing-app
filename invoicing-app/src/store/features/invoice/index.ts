@@ -4,7 +4,8 @@ import data from "../../../data/data.json"
 export const InvoiceSlice = createSlice({
   name: 'invoice',
   initialState: {
-    data: data || []
+    data: data || [],
+    editingInvoice: null,
   },
   reducers: {
     setData: (state, action) => {
@@ -20,6 +21,9 @@ export const InvoiceSlice = createSlice({
         }else{
           state.data = [...state.data, action.payload]
         }
+    },
+    setEditingInvoice: (state, action) => {
+      state.editingInvoice = action.payload
     }
 }
 })

@@ -19,14 +19,14 @@ type State = {
   invoiceItem: any;
   required: boolean;
 }
-class InvoiceNew extends React.Component<Props,State> {
+class InvoiceEdit extends React.Component<Props,State> {
     
     constructor(props: Props) {
         super(props);
 
         this.state = {
             paymentTerms,
-            invoiceItem: generateDefaultInvoice(),
+            invoiceItem: this.props.invoice.editingInvoice,
             required: true
         }
         this.addItem = this.addItem.bind(this)
@@ -50,7 +50,7 @@ class InvoiceNew extends React.Component<Props,State> {
        }
 
 
-       set(invoice,key,value)
+    set(invoice,key,value)
       this.setState({
         invoiceItem: {
             ...invoice
@@ -112,6 +112,7 @@ class InvoiceNew extends React.Component<Props,State> {
     }
 
     render() {
+  
       const items = this.state.invoiceItem.items.map((item:any, index:number) => <InvoiceItem  required={this.state.required}key={index} item={item} setItem={(key:string,value:any)=>this.updateItem(item.id,key,value)} removeItem={(key:string)=>this.removeItem(key)} />)
      return( 
        <form  onSubmit={this.handleSubmit}>
@@ -168,15 +169,10 @@ class InvoiceNew extends React.Component<Props,State> {
                 </div>
               <div className="invoice-new-footer">
                 <div className="invoice-new-footer-left">
-                  <Button  type="button"  label={"Discard"} customClass={["button-6"]} onClick={()=>this.props.toggleInvoiceSideBar("")}  />
                 </div>
                 <div className="invoice-new-footer-right">
-                  <Button type="button" label={"Save to Draft"} customClass={["button-7"]} 
-                  onClick={()=>{ 
-                    this.props.setOneInvoice({...this.state.invoiceItem,status:"draft"});
-                    this.props.toggleInvoiceSideBar("");
-                    }}  />
-                  <Button  type="submit" label={"Save & Send"} customClass={["default"]}  />
+                  <Button type="button" label={"Cancel"} onClick={()=>this.props.toggleInvoiceSideBar("")} customClass={["button-4"]} />
+                  <Button type="submit" label={"Save Changes"} customClass={["default"]}  />
                 </div>
               </div>
           </div>
@@ -199,8 +195,8 @@ class InvoiceNew extends React.Component<Props,State> {
   function mapDispatchToProps(dispatch: any) {
     return {
       setOneInvoice: (data: any) => dispatch({ type: "invoice/setOneInvoice", payload: data }),
-      toggleInvoiceSideBar: (type:string) => dispatch({ type: "app/toggleInvoiceSideBar", payload: type })
+      toggleInvoiceSideBar: (type: string) => dispatch({ type: "app/toggleInvoiceSideBar", payload: type })
     };
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InvoiceNew);
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceEdit);
