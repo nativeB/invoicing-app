@@ -385,10 +385,10 @@ body {
         background-color: $color-blue-light;
         border: none;
         &:hover{
-            border: 1.3px $color-violet-light solid;
+            border: 1px $color-violet-light solid;
         }
         &:focus{
-            background-color: 1.3px $color-violet-light solid;
+            background-color: 1px $color-violet-light solid;
         }
     }
     div {
@@ -418,10 +418,10 @@ body {
                 padding: 10px;
                 border-radius: 5px;
                 &:hover{
-                    border: 1.3px $color-violet-light solid;
+                    border: 1px $color-violet-light solid;
                 }
                 &:focus{
-                    background-color: 1.3px $color-violet-light solid;
+                    background-color: 1px $color-violet-light solid;
                 }
                 &.dark{
                     color: white;

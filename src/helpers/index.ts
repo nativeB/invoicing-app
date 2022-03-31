@@ -51,3 +51,9 @@ export function generateDefaultInvoice() {
         "createdAt": formatDate(new Date())
 }
 }
+
+export const paymentTerms = [
+    { label: "Next Day", value: 1 },
+    { label: "Next 7 Days", value: 7 },
+    { label: "Next 30 Days", value: 30 },
+]

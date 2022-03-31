@@ -4,14 +4,14 @@ export const AppSlice = createSlice({
   name: 'app',
   initialState: {
     mode: "light",
-    toggleInvoiceSideBar: false,
+    toggleInvoiceSideBar: "",
   },
   reducers: {
     setMode: (state, action) => {
       state.mode = action.payload
     },
-    toggleInvoiceSideBar: (state) => {
-      state.toggleInvoiceSideBar =  !state.toggleInvoiceSideBar
+    toggleInvoiceSideBar: (state, action) => {
+      state.toggleInvoiceSideBar =  action.payload
     }
   },
 })
