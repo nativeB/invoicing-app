@@ -1,3 +1,5 @@
+import { get } from "lodash-es";
+
 const upperCaseLetters = "ABCDEFGHIJKLMNPQRSTUVWXYZ";
 export function randomID(){
     const twoRandomLetters = `${upperCaseLetters[randomNumber(upperCaseLetters.length)]}${upperCaseLetters[randomNumber(upperCaseLetters.length)]}`
@@ -66,7 +68,7 @@ export const invoiceStatus = [
 ]
 
 export function upperCaseFirst(data:string) {
-  return `${data[0].toUpperCase()}${data.substring(1)}`
+  return data? `${data[0].toUpperCase()}${data.substring(1)}`: ""
 }
 
 export function formatDateNice (date:string) {
@@ -79,4 +81,8 @@ export function formatDateNice (date:string) {
     if(!price) return ""
     const format = Intl.NumberFormat('en-US',{ style: 'currency', currency: 'GBP' }).format
     return `${format(price)}`;
+  }
+
+  export function sumOnKey(array:any[], key:string) {
+    return array.reduce((acc, item) => acc + get(item,key,0), 0)
   }
