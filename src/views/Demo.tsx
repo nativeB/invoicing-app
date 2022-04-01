@@ -2,6 +2,8 @@ import React from 'react';
 import Button from '../components/elements/Button';
 import Input from '../components/elements/Input';
 import Select from "../components/elements/Select"
+// this is just to demo my components to see if they work before i move them to the app
+
 class Demo extends React.Component {
   render(){
     return (
