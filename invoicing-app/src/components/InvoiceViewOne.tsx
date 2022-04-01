@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { formatDateNice, formatNumber } from '../helpers';
 import InvoiceId from './invoiceId';
+
 type Props = {
     invoice: any,
 }

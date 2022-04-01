@@ -9,6 +9,7 @@ import {
 import InvoiceSideHeader from './components/InvoiceSideBar';
 import InvoiceSideContent from './views/InvoicesSideContent';
 import InvoicesView from './views/InvoicesView';
+
 function App() {
   return (
       <Router>

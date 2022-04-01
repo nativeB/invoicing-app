@@ -1,6 +1,7 @@
 import React from 'react';
 import { formatDateNice } from '../helpers';
 import InvoiceId from './invoiceId';
+
 type Props = {
     invoice: any,
 }

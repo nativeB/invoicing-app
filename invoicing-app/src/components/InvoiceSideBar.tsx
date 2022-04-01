@@ -3,6 +3,7 @@ import { ReactComponent as Logo} from "../assets/logo.svg";
 import  Avatar from "../assets/image-avatar.jpg";
 import { ReactComponent as Moon} from "../assets/icon-moon.svg";
 import { ReactComponent as Sun} from "../assets/icon-sun.svg";
+
 type State = {
    mode: "dark" | "light";
 }

@@ -5,6 +5,7 @@ import {ReactComponent as ArrowRight} from "../assets/icon-arrow-right.svg";
 import { formatDateNice, formatNumber } from '../helpers';
 import InvoiceId from './invoiceId';
 import InvoiceStatusTag from './InvoiceStatusTag';
+
 type Props = {
     item: {
       id: string;
@@ -23,8 +24,6 @@ function InvoiceRow(props: Props) {
     return (
       <div className='invoice-row ' onClick={()=>{
         navigate(`/invoices/${id}`)
-      //  setEditingInvoice(item);
-      //  toggleInvoiceSideBar("edit")
       }}>
        <InvoiceId id = {id}/>
         <h3 className='text-sm'> {formatDateNice(paymentDue)}</h3>

@@ -9,8 +9,8 @@ class Demo extends React.Component {
     return (
         <div >
           <Button icon="plus" label={"New Invoice"} onClick={()=>console.log('test')}  size={"large"} />
-          <Input customClass={["dark"]} value='hello' label={"Add new Item"} onInput={()=>console.log('test')} type= {"grey"} size={"large"} />
-          <Input customClass={["dark"]} label={"Add new Item"} onInput={()=>console.log('test')} type= {"grey"} inputType={'date'} size={"large"} />
+          <Input customClass={["dark"]} value='hello' label={"Add new Item"} onInput={()=>console.log('test')}  size={"large"} />
+          <Input customClass={["dark"]} label={"Add new Item"} onInput={()=>console.log('test')}  inputType={'date'} size={"large"} />
           <Select customClass={["dark"]} options={[{label:"Volvo",value:"volvo"},{label:"Saab",value:"saab"}]} label={"Add new Item"} onChange={()=>console.log('test')}  />
         </div>
       );

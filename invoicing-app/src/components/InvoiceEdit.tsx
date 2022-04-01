@@ -8,6 +8,10 @@ import Select from "./elements/Select";
 import InvoiceItem from "./InvoiceItem";
 import InvoiceItemHead from "./InvoiceItemHead";
 import InvoiceId from "./invoiceId";
+// this component is almost identical to InvoiceNew.tsx
+//  not making methods mixins because it will most definitely grow out of control as the app grows
+//  and become harder to maintain
+//  so i think its best they bot maintain their own methods
 type Props = {
   invoice: any;
   app: any;
