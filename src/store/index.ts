@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import appReducer from './features/app'
-import invoiceReducer from './features/invoice'
+import appReducer from './reducers/app'
+import invoiceReducer from './reducers/invoice'
 
 export const store  = configureStore({
   reducer: {
@@ -8,7 +8,5 @@ export const store  = configureStore({
     invoice: invoiceReducer
   },
 })
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch
