@@ -12,15 +12,41 @@ type Prop = {
     data:  { [key:string]: any}[]
     },
     toggleInvoiceSideBar: (type:string) => void,
+
 }
-class Invoices extends React.Component<Prop> {
+type State = {
+  filter: string,
+}
+class Invoices extends React.Component<Prop, State> {
   static defaultProps = {
     invoice: {
       data: []
     }
   }
+  constructor(props: Prop) {
+    super(props);
+    this.state = {
+      filter: ""
+    }
+    this.setFilter  = this.setFilter.bind(this);
+    
+  }
+
+  setFilter(filter:string) {
+    this.setState({
+      filter
+    })
+  }
+
+
   render(){
-    const invoiceCount = this.props.invoice.data? this.props.invoice.data.length:0
+    const {invoice} = this.props;
+    const {filter} = this.state;
+    const filteredInvoices = filter? invoice.data.filter((invoiceItem:any)=>{
+      return invoiceItem.status.toLowerCase().includes(filter.toLowerCase());
+    }) : invoice.data;
+
+    const invoiceCount = filteredInvoices? filteredInvoices.length:0
     let invoiceCountText = ""
       if(invoiceCount){
         invoiceCountText = `There are ${invoiceCount} total invoices`
@@ -33,15 +59,15 @@ class Invoices extends React.Component<Prop> {
       </>
 
       const headerRight = <> 
-       <Dropdown options={invoiceStatus} label="Filter By Status" onChange={()=>console.log('test')} />
+       <Dropdown options={invoiceStatus} label="Filter By Status" onChange={(e)=> this.setFilter(e)} />
         <Button customClass={["default"]} icon="plus" iconClass={["icon "]} label={"New Invoice"} onClick={()=>this.props.toggleInvoiceSideBar("new")}   />
       </>
     return (
         <div className='content'> 
         <InvoiceHeader  left={headerLeft} right={headerRight} />
           {
-            this.props.invoice.data && this.props.invoice.data.length? 
-            <InvoiceList data={this.props.invoice.data} />
+            filteredInvoices && filteredInvoices.length? 
+            <InvoiceList data={filteredInvoices} />
             : <InvoiceEmpty />
           }
         </div>
