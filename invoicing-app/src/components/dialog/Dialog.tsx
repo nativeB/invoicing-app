@@ -13,7 +13,7 @@ function Dialog(props: Props) {
    dialog =  <div className='dialog' >
       <div className='dialog-content'>
         <h1>{title} </h1>
-        <p className="text-sm"> {description} </p>
+        <h3 className="text-sm"> {description} </h3>
         <div className='dialog-buttons'>
           <div className='dialog-button-content'>
           {bottom}

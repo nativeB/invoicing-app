@@ -168,15 +168,17 @@ body {
         align-items: center;
 
         .dialog-content {
-            width: 450px;
+            width: 400px;
             height: 150px;
             background-color: $color-white;
             border-radius: 10px;
             display: flex;
             flex-direction: column;
-            padding: 60px;
+            padding: 45px;
         
-           
+            h3{
+                margin-bottom: 30px;
+            }
             .dialog-buttons{
                 width:100%;
                 display: flex;
