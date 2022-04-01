@@ -28,7 +28,7 @@ class Button extends React.Component<Props> {
      return( 
         <button type={this.props.type} onClick={this.props.onClick} className = {className} > 
         <span className={(this.props.iconClass||[]).join(' ')} > {icon} </span>
-        <span>{ this.props.label}</span>
+        <span className="button-text">{ this.props.label}</span>
         </button>
       );
     }

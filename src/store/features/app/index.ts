@@ -9,9 +9,11 @@ export const AppSlice = createSlice({
   reducers: {
     setMode: (state, action) => {
       state.mode = action.payload
+      return state
     },
     toggleInvoiceSideBar: (state, action) => {
       state.toggleInvoiceSideBar =  action.payload
+      return state
     }
   },
 })

@@ -8,14 +8,18 @@ import {
 } from "react-router-dom";
 import InvoiceSideHeader from './components/InvoiceSideBar';
 import InvoiceSideContent from './views/InvoicesSideContent';
+import InvoicesView from './views/InvoicesView';
 function App() {
   return (
       <Router>
       <div className="App">
         <Routes>
+          <Route path="/" element={<Invoices />}> 
+          </Route>
           <Route path="/demo" element={<Demo />}>
           </Route>
-          <Route path="/" element={<Invoices />}> 
+         
+          <Route path="/invoices/:id" element={<InvoicesView />}> 
           </Route>
         </Routes>
 
