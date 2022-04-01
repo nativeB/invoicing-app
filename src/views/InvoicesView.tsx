@@ -6,7 +6,7 @@ import InvoiceHeader from '../components/InvoiceHeader';
 import InvoiceStatusTag from '../components/InvoiceStatusTag';
 import InvoiceViewOne from '../components/InvoiceViewOne';
 import Navigation from '../components/Navigation';
-import { withParams } from '../helpers/wrappers';
+import { withParams, withNavigate } from '../helpers/wrappers';
 
 
 type Prop = {
@@ -15,6 +15,8 @@ type Prop = {
     toggleInvoiceSideBar: (type:string) => void;
     setEditingInvoice: (data: any) => void;
     setOneInvoice: (invoiceItem:any) => void;
+    removeOneInvoice: (id: string) => void;
+    navigate: (path: string, options:any) => void;
 }
 type State = {
   showDeleteDialog: boolean;
@@ -28,6 +30,7 @@ class InvoiceView extends React.Component<Prop, State> {
     }
     this.markAsPaid = this.markAsPaid.bind(this);
     this.setShowDeleteDialog = this.setShowDeleteDialog.bind(this);
+    this.deleteOneInvoice = this.deleteOneInvoice.bind(this);
   }
 
   static defaultProps = {
@@ -47,6 +50,10 @@ class InvoiceView extends React.Component<Prop, State> {
         showDeleteDialog: show
       }
     })
+  }
+  deleteOneInvoice() {
+    this.props.removeOneInvoice(this.props.params.id);
+    this.props.navigate('/', {replace: true });
   }
 
   render(){
@@ -75,7 +82,7 @@ class InvoiceView extends React.Component<Prop, State> {
         show={this.state.showDeleteDialog} 
         bottom={ <>
                 <Button  type="button" onClick={()=>this.setShowDeleteDialog(false)}   label={"Cancel"} customClass={["button-4"]}   />
-                <Button  type="button"  label={"Delete"} customClass={["button-5"]} onClick={()=>0}  /> </>}
+                <Button  type="button"  label={"Delete"} customClass={["button-5"]} onClick={this.deleteOneInvoice}  /> </>}
         />
 
         <Navigation path="/" label="Go Back" />
@@ -95,8 +102,9 @@ function mapDispatchToProps(dispatch: any) {
   return {
     setOneInvoice: (data: any) => dispatch({ type: "invoice/setOneInvoice", payload: data }),
     toggleInvoiceSideBar: (type:string) => dispatch({ type: "app/toggleInvoiceSideBar", payload: type }),
-    setEditingInvoice: (data: any) => dispatch({ type: "invoice/setEditingInvoice", payload: data })
+    setEditingInvoice: (data: any) => dispatch({ type: "invoice/setEditingInvoice", payload: data }),
+    removeOneInvoice: (data: any) => dispatch({ type: "invoice/removeOneInvoice", payload: data })
   };
 }
 
-export default withParams(connect(mapStateToProps, mapDispatchToProps)(InvoiceView));
+export default withNavigate(withParams(connect(mapStateToProps, mapDispatchToProps)(InvoiceView)));
