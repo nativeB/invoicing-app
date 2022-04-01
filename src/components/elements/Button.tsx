@@ -14,7 +14,7 @@ class Button extends React.Component<Props> {
     static defaultProps = {
         size: "medium",
         icon: "",
-        customClasses: [],
+        customClass: [],
         type: "button"
       };
     render() {
