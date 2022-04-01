@@ -7,6 +7,7 @@ import Input from "./elements/Input";
 import Select from "./elements/Select";
 import InvoiceItem from "./InvoiceItem";
 import InvoiceItemHead from "./InvoiceItemHead";
+import InvoiceId from "./invoiceId";
 type Props = {
   invoice: any;
   app: any;
@@ -23,7 +24,6 @@ class InvoiceEdit extends React.Component<Props,State> {
     
     constructor(props: Props) {
         super(props);
-        console.log(this.props.invoice.editingInvoice)
         this.state = {
             paymentTerms,
             invoiceItem: this.props.invoice.editingInvoice,
@@ -119,7 +119,8 @@ class InvoiceEdit extends React.Component<Props,State> {
           <div className="invoice-view-side">
           <div className="invoice-edit">
               <div className="invoice-new-header">
-                <h2>New Invoice</h2>
+                <h2>Edit</h2>
+                <InvoiceId id={this.state.invoiceItem.id} />
               </div>
               <div className="invoice-new-body">
                 <h3 className="text-sm-bold heading">Fill Form</h3>

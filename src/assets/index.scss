@@ -245,6 +245,13 @@ body {
             color: $color-violet !important;
             padding: 20px 0px 5px 0px;
         }
+        .invoice-new-header{
+            display: flex;
+            align-items: center;
+            h2{
+                padding-right: 5px;
+            }
+        }
         .invoice-new-body{
             display: flex;
             flex-direction: column;
