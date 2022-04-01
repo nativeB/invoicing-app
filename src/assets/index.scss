@@ -149,6 +149,44 @@ body {
     .pound{
         color: $color-ube
     }
+    .dark .dialog{
+        .dialog-content{
+            background-color: $color-blue;
+        }
+    }
+    .dialog{
+        position: fixed;
+        
+        left: 0;
+        right: 0;
+        top:0;
+        bottom:0;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .dialog-content {
+            width: 450px;
+            height: 150px;
+            background-color: $color-white;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+        
+           
+            .dialog-buttons{
+                width:100%;
+                display: flex;
+                flex-direction: row-reverse;
+                .dialog-button-content{
+                    display: flex;
+                }
+            }
+        }
+    }
     .navigation{
         display: flex;
         align-items: center;
@@ -401,7 +439,7 @@ body {
         justify-content: center;
         cursor: pointer;
         height: 40px;
-        margin:3px;
+        margin: 5px;
         .icon {
             height: 30px;
             width:30px;
