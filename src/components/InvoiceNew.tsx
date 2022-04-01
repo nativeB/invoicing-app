@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import {cloneDeep, set} from "lodash-es"
-import { formatDate, generateDefaultInvoice, paymentTerms } from "../helpers";
+import { formatDate, generateDefaultInvoice, paymentTerms, sumOnKey } from "../helpers";
 import Button from "./elements/Button";
 import Input from "./elements/Input";
 import Select from "./elements/Select";
@@ -67,17 +67,23 @@ class InvoiceNew extends React.Component<Props,State> {
       }))
     }
     removeItem(id: string){
-      this.setState(prevState => ({
-        invoiceItem: {
-          ...prevState.invoiceItem,
-          items: prevState.invoiceItem.items.filter((item:any)=> item.id !== id)
+      this.setState(prevState => {
+          const items = prevState.invoiceItem.items.filter((item:any) => item.id !== id)
+          const newItems = prevState.invoiceItem.items.filter((item:any)=> item.id !== id)
+        
+          return {
+          invoiceItem: {
+            ...prevState.invoiceItem,
+            items,
+            total: sumOnKey(newItems,'total')
+          }
         }
-      }))
+      })
     }
     updateItem(id:string,key:string,value:any){
       this.setState(prevState => {
         const item = prevState.invoiceItem.items.find((item:any)=> item.id === id);
-        let total = 0, itemTotal = 0;
+        let total = 0;
 
         if(key === "price" && item.quantity){
             total = value * item.quantity
@@ -93,10 +99,8 @@ class InvoiceNew extends React.Component<Props,State> {
             items: prevState.invoiceItem.items.map((item:any)=> item.id === id ? {...item, [key]: value, total} : item)
           }
         }
-        itemTotal = state.invoiceItem.items.reduce((total:number,current:any)=>{
-          return total + current.total
-        },0)
-        state.invoiceItem['total'] = itemTotal
+     
+        state.invoiceItem['total'] = sumOnKey(state.invoiceItem.items,'total')
 
         return state
 

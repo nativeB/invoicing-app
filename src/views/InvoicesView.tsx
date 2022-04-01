@@ -71,7 +71,7 @@ class InvoiceView extends React.Component<Prop, State> {
       <Button  label={"Delete"}  onClick={()=>this.setShowDeleteDialog(true)}  customClass={["button-5"]}  />
       
       {
-      invoice.status !== 'paid'? <Button onClick={this.markAsPaid}  label={"Mark as Paid"} customClass={["default"]}  />
+      !['paid','draft'].includes(invoice.status)? <Button onClick={this.markAsPaid}  label={"Mark as Paid"} customClass={["default"]}  />
       : <></>}
      </>
     return (
