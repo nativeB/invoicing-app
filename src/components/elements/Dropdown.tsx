@@ -1,5 +1,6 @@
-import {ReactComponent as ArrowDown} from "../../assets/icon-arrow-down.svg";
 import React from "react";
+import {ReactComponent as ArrowDown} from "../../assets/icon-arrow-down.svg";
+
 type Props = {
     label: string,
     customClass?: string[],

@@ -1,7 +1,7 @@
 import React from "react";
+
 type Props = {
     label: string,
-    type: "violet"|"dark"|"dark-light"|"red"|"grey"|"grey-light"
     size: "medium"|"large"
     inputType?: "text" | "date"
     customClass?: string[],
@@ -13,7 +13,6 @@ type Props = {
 
 class Input extends React.Component<Props> {
     static defaultProps = {
-        type: "violet",
         size: "medium",
         customClass: [],
         inputType: "text",

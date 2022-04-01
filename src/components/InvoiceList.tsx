@@ -1,5 +1,6 @@
 import React from 'react';
 import InvoiceRow from "./InvoiceRow"
+
 type Props = {
     data: {[key:string]:any},
 }

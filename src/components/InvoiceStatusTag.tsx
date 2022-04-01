@@ -1,5 +1,6 @@
 import React from 'react';
 import { upperCaseFirst } from '../helpers';
+
 type Props = {
       status: "paid" | "pending"| "draft"
   }
