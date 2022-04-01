@@ -19,7 +19,6 @@ export const InvoiceSlice = createSlice({
           const invoice = cloneDeep(data)
           invoice[invoiceIndex] = action.payload
             data = invoice
-            console.log({invoiceIndex,id, invoice: invoice[invoiceIndex]})
         }else{
           data = [...data, action.payload]
         }

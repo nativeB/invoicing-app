@@ -43,10 +43,8 @@ class InvoiceEdit extends React.Component<Props,State> {
        if(key === 'paymentTerms') {
          const created = new Date(invoice.createdAt);
          created.setDate(created.getDate() + parseInt(value));
-         console.log(created.getDate(), parseInt(value))
          const paymentDue = formatDate(created)
          set(invoice,'paymentDue',paymentDue)
-         console.log(invoice)
        }
 
 
