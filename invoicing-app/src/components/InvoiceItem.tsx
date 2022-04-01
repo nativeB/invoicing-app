@@ -34,10 +34,10 @@ class InvoiceItem extends React.Component<Props> {
           <Input required={this.props.required} value={this.props.item.name||""}  customClass={["input-full"]} label={""} onInput={(value)=>this.props.setItem("name",value)} inputType={'text'} />
         </div>
         <div className={"invoice-item-pad"}>
-          <Input required={this.props.required}  value={this.props.item.quantity||0}  customClass={["input-full"]} label={""} onInput={(value)=>{this.props.setItem("quantity",value)}} inputType={'text'} />
+          <Input required={this.props.required}  value={this.props.item.quantity||0}  customClass={["input-full"]} label={""} onInput={(value)=>{this.props.setItem("quantity",value)}} inputType={'number'} />
         </div>
         <div className={"invoice-item-pad"}>
-          <Input required={this.props.required}  value={this.props.item.price||0} customClass={["input-full"]} label={""} onInput={(value)=>{this.props.setItem("price",value)}} inputType={'text'} />
+          <Input required={this.props.required}  value={this.props.item.price||0} customClass={["input-full"]} label={""} onInput={(value)=>{this.props.setItem("price",value)}} inputType={'number'} />
         </div>
         <div className={"invoice-item-pad"}>
           <div className='labels'><span  className='text-sm'>{this.props.item.total||0}</span></div>

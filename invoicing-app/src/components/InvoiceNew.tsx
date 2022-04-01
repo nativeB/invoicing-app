@@ -139,7 +139,7 @@ class InvoiceNew extends React.Component<Props,State> {
                   <Input required={this.state.required} customClass={['input-full']}  label={"Client's Name"} onInput={(value)=> this.setInvoiceProperty("clientName", value)} value={this.state.invoiceItem.clientName}  />
                 </section>
                 <section>
-                  <Input required={this.state.required} customClass={['input-full']}  label={"Client's Email"} onInput={(value)=> this.setInvoiceProperty("clientEmail", value)} value={this.state.invoiceItem.clientEmail} />
+                  <Input required={this.state.required} inputType="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" customClass={['input-full']}  label={"Client's Email"} onInput={(value)=> this.setInvoiceProperty("clientEmail", value)} value={this.state.invoiceItem.clientEmail} />
                 </section>
                 <section>
                   <Input required={this.state.required} customClass={['input-full']}  label={"Street Address"} onInput={(value)=> this.setInvoiceProperty("clientAddress.street", value)}  value={this.state.invoiceItem.clientAddress.street} />
