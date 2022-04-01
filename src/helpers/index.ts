@@ -59,6 +59,7 @@ export const paymentTerms = [
 ]
 
 export const invoiceStatus = [
+    { label: "All", value: "" },
     { label: "Draft", value: "draft" },
     { label: "Paid", value: "paid" },
     { label: "Pending", value: "pending" },
