@@ -23,7 +23,7 @@ class InvoiceEdit extends React.Component<Props,State> {
     
     constructor(props: Props) {
         super(props);
-
+        console.log(this.props.invoice.editingInvoice)
         this.state = {
             paymentTerms,
             invoiceItem: this.props.invoice.editingInvoice,

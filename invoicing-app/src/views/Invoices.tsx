@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from '../components/elements/Button';
+import Dropdown from '../components/elements/Dropdown';
 import InvoiceEmpty from '../components/InvoiceEmpty';
 import InvoiceList from '../components/InvoiceList';
-import InvoiceHeader from '../components/InvoiceListHeader';
+import InvoiceHeader from '../components/InvoiceHeader';
+import { invoiceStatus } from '../helpers';
 
 type Prop = {
   invoice: { 
@@ -17,9 +20,25 @@ class Invoices extends React.Component<Prop> {
     }
   }
   render(){
+    const invoiceCount = this.props.invoice.data? this.props.invoice.data.length:0
+    let invoiceCountText = ""
+      if(invoiceCount){
+        invoiceCountText = `There are ${invoiceCount} total invoices`
+      }else{
+        invoiceCountText = "No invoices"
+      }
+      const headerLeft = <>
+      <h1 className="header-text-sm">Invoices</h1>
+          <h3 className="header-text-xs">{invoiceCountText}</h3>
+      </>
+
+      const headerRight = <> 
+       <Dropdown options={invoiceStatus} label="Filter By Status" onChange={()=>console.log('test')} />
+        <Button customClass={["default"]} icon="plus" iconClass={["icon "]} label={"New Invoice"} onClick={()=>this.props.toggleInvoiceSideBar("new")}   />
+      </>
     return (
         <div className='content'> 
-        <InvoiceHeader totalInvoices={this.props.invoice.data? this.props.invoice.data.length:0} />
+        <InvoiceHeader  left={headerLeft} right={headerRight} />
           {
             this.props.invoice.data && this.props.invoice.data.length? 
             <InvoiceList data={this.props.invoice.data} />

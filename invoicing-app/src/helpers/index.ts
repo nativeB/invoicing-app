@@ -57,3 +57,25 @@ export const paymentTerms = [
     { label: "Next 7 Days", value: 7 },
     { label: "Next 30 Days", value: 30 },
 ]
+
+export const invoiceStatus = [
+    { label: "Draft", value: "draft" },
+    { label: "Paid", value: "paid" },
+    { label: "Pending", value: "pending" },
+]
+
+export function upperCaseFirst(data:string) {
+  return `${data[0].toUpperCase()}${data.substring(1)}`
+}
+
+export function formatDateNice (date:string) {
+    //TODO - reverse month and date order
+    if(!date) return ""
+    return (new Date(date)).toLocaleDateString("en-US",{month:"short",year:"numeric",day:"numeric"})
+  }
+
+  export function  formatNumber(price:number) {
+    if(!price) return ""
+    const format = Intl.NumberFormat('en-US',{ style: 'currency', currency: 'GBP' }).format
+    return `${format(price)}`;
+  }

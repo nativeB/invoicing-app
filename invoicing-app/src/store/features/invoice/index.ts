@@ -14,16 +14,26 @@ export const InvoiceSlice = createSlice({
     setOneInvoice: (state, action) => {
         const { id } = action.payload
         const invoiceIndex = state.data.findIndex(invoice => invoice.id === id)
+        let { data} = state;
+        data = [...data]
         if(invoiceIndex !== -1){
-          const invoice = cloneDeep(state.data)
+          const invoice = cloneDeep(data)
           invoice[invoiceIndex] = action.payload
-            state.data = invoice
+            data = invoice
+            console.log({invoiceIndex,id, invoice: invoice[invoiceIndex]})
         }else{
-          state.data = [...state.data, action.payload]
+          data = [...data, action.payload]
+        }
+        return {
+          ...state,
+          data
         }
     },
     setEditingInvoice: (state, action) => {
-      state.editingInvoice = action.payload
+      return {
+        ...state,
+        editingInvoice:  action.payload
+      }
     }
 }
 })

@@ -130,8 +130,10 @@ body {
             word-wrap: break-word;
         }
     }
-    .dark .invoice-row{
-        background-color: $color-blue-light;
+    .dark {
+        .invoice-row{
+            background-color: $color-blue-light;
+        }
         & .invoice-status.paid{
             background-color: $color-green-light;
         }
@@ -144,6 +146,17 @@ body {
         }
     }
  
+    .pound{
+        color: $color-ube
+    }
+    .navigation{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 120px;
+        margin-bottom: 30px;
+        cursor: pointer;
+    }
     .invoice-row{
         display: grid;
         grid-template-columns: 100px auto auto auto 100px 50px;
@@ -155,34 +168,35 @@ body {
         border-radius: 10px;
         background-color: white;
 
-        .pound,svg{
+        svg{
             color: $color-ube
         }
-        .invoice-status{
-            @extend .text-sm;
-            display: flex;
-            padding: 0px 10px;
-            justify-content: center;
-            align-items: center;
-            border-radius: 5px;
-            height: 40px;
-            text-align: center;
-            &.paid{
-                background-color: $color-green-light-alt;
-                color: $color-green;
-            }
-            &.pending{
-                background-color: $color-gold-light-alt;
-                color: $color-gold;
-            }
-            &.draft{
-                color: $color-black;
-                background-color: $color-white-alt-2;
-            }
-            span{
-                font-size: 40px;
-                padding-top: 5px;
-            }
+     
+    }
+    .invoice-status{
+        @extend .text-sm;
+        display: flex;
+        padding: 0px 10px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        height: 40px;
+        text-align: center;
+        &.paid{
+            background-color: $color-green-light-alt;
+            color: $color-green;
+        }
+        &.pending{
+            background-color: $color-gold-light-alt;
+            color: $color-gold;
+        }
+        &.draft{
+            color: $color-black;
+            background-color: $color-white-alt-2;
+        }
+        span{
+            font-size: 40px;
+            padding-top: 5px;
         }
     }
 
@@ -293,7 +307,80 @@ body {
                 color: $color-blue-light;
             }
     }
+  
 }
+
+   .dark .invoice-view-header{
+        background-color: $color-blue;
+        padding: 30px;
+        border-radius: 10px;
+    }
+    .invoice-view-header{
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+    }
+    .dark .invoice-view-one{
+        background-color: $color-blue;
+       section:nth-child(4){
+            background-color: $color-blue-light;
+        }
+       section:nth-child(5){
+            background-color: $color-black;
+        }
+    }
+    .invoice-view-one{
+
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+        margin: 30px 0px;
+        border-radius: 10px;
+        background-color: white;
+
+        section {
+            display: grid;
+            grid-template-columns: auto auto;
+            justify-content: space-between;
+        }
+        section:nth-child(2) {
+            display: grid;
+            grid-template-columns: 100px 150px auto auto;
+        }
+        section:nth-child(3) {
+            display: grid;
+            grid-template-columns: 150px 150px auto;
+        }
+        section:nth-child(4) {
+            display: grid;
+            grid-template-columns: 200px 50px auto auto;
+            background-color: $color-white;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 10px 10px 00px 00px;
+
+            h3 {
+                padding: 15px;
+            }
+        }
+        section:nth-child(5) {
+            display: grid;
+            grid-template-columns: auto auto;
+            background-color: $color-grey-light;
+            padding: 30px;
+            border-radius: 0px 0px 0px 00px;
+
+            h3 {
+                padding: 15px;
+            }
+        }
+
+        
+        .column{
+            display: flex;
+            flex-direction: column;
+        }
+    }
 
 
     button{
@@ -307,6 +394,7 @@ body {
         justify-content: center;
         cursor: pointer;
         height: 40px;
+        margin:3px;
         .icon {
             height: 30px;
             width:30px;
@@ -316,6 +404,10 @@ body {
             align-items: center;
             justify-content: center;
             margin-right: 10px;
+        }
+
+        .button-text{
+            padding: 0px 15px;
         }
 
         &.default{
@@ -532,6 +624,14 @@ body {
             .App-header-right{
                 display: flex;
                 flex-direction: row;
+            }
+            .App-header-status {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                h2 {
+                    margin-right: 15px;
+                }
             }
         }
 
