@@ -53,7 +53,7 @@ class InvoiceView extends React.Component<Prop, State> {
   }
   deleteOneInvoice() {
     this.props.removeOneInvoice(this.props.params.id);
-    this.props.navigate('/', {replace: true });
+    this.props.navigate('/invoicing-app/', {replace: true });
   }
 
   render(){
@@ -85,7 +85,7 @@ class InvoiceView extends React.Component<Prop, State> {
                 <Button  type="button"  label={"Delete"} customClass={["button-5"]} onClick={this.deleteOneInvoice}  /> </>}
         />
 
-        <Navigation path="/" label="Go Back" />
+        <Navigation path="/invoicing-app" label="Go Back" />
         <InvoiceHeader customClass="invoice-view-header" left={headerLeft}  right={headerRight}  />
         <InvoiceViewOne invoice={invoice}/>
         </div>

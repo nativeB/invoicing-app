@@ -23,7 +23,7 @@ function InvoiceRow(props: Props) {
   const { id, paymentDue, clientName, total, status } = item;
     return (
       <div className='invoice-row ' onClick={()=>{
-        navigate(`/invoices/${id}`)
+        navigate(`/invoicing-app/invoices/${id}`)
       }}>
        <InvoiceId id = {id}/>
         <h3 className='text-sm'> {formatDateNice(paymentDue)}</h3>

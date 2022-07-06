@@ -15,12 +15,12 @@ function App() {
       <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Invoices />}> 
+          <Route path="/invoicing-app" element={<Invoices />}> 
           </Route>
-          <Route path="/demo" element={<Demo />}>
+          <Route path="/invoicing-app/demo" element={<Demo />}>
           </Route>
          
-          <Route path="/invoices/:id" element={<InvoicesView />}> 
+          <Route path="/invoicing-app/invoices/:id" element={<InvoicesView />}> 
           </Route>
         </Routes>
 
